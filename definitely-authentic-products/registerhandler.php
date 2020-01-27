@@ -52,7 +52,7 @@ if($DBConnect){
     //echo $userRows;
     if($email === null || $email === EMPTY_STRING){
     //if($firstName === NULL || $firstName == str_replace(" ", "" , $firstName)){
-        echo "<p style = 'color: red;'>The <strong>Username</strong> is a required field
+        echo "<p style = 'color: red;'>The <strong>Email</strong> is a required field
             and cannot be blank.</p>";
     }
     else if($password == null || $password == EMPTY_STRING){
