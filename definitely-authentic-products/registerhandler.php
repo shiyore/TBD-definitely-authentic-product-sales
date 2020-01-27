@@ -14,31 +14,13 @@
     <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
-    <ul>
-        <li style="display: inline;">
-            <a href="index.html">Home</a>
-        </li>
-        <li style="display: inline;">
-            <a href="blogpost.html">Create a post</a>
-        </li>
-        <li style="display: inline;">
-            <a href="makeBlogRequest.php">List Blogs</a>
-        </li>
-        <li style="display: inline;">
-            <a href="searchpage.php">Search Posts</a>
-        </li>
-        <li style="display: inline;">
-            <a href="index.html">Log off</a>
-        </li>
-    </ul>
-    <div class = "background">
 <?php
 //requires and includes
 require_once('myFuncs.php');
 
 #global login variables for mysql
 define('EMPTY_STRING' , "");
-$DBName = "milestone1";
+$DBName = "notascam";
 $tableName = "users";
 
 //traps if there is no data
@@ -50,43 +32,44 @@ if(!isset($_POST["submitButton"])){
 else{
     #global variables holding the registration data from the registration page
     $email = $_POST['email'];
-    $userName = $_POST['userName'];
-    $Password = $_POST['password'];
+    //$userName = $_POST['username'];
+    $password = $_POST['password'];
 }
-
 #stores the resource 
 $DBConnect = connect($DBName);
 if($DBConnect){
     #Testing for valid data
     include('utility.php');
-    $usernames = "SELECT Username FROM $tableName WHERE Username ='$userName'";
-    $usernameCheck = $DBConnect->query($usernames);
-    $userRows = $usernameCheck->num_rows;
-    $emails = "SELECT Email FROM $tableName WHERE Email='$email'";
+    //$usernames = "SELECT username FROM $tableName WHERE username ='$userName'";
+    //$usernameCheck = $DBConnect->query($usernames);
+    //$userRows = $usernameCheck->num_rows;
+    $emails = "SELECT email FROM $tableName WHERE email='$email'";
     $emailCheck = $DBConnect->query($emails);
     $emailRows = $emailCheck->num_rows;
     
+    
+    
     //echo $userRows;
-    if($userName === null || $userName === EMPTY_STRING){
+    if($email === null || $email === EMPTY_STRING){
     //if($firstName === NULL || $firstName == str_replace(" ", "" , $firstName)){
         echo "<p style = 'color: red;'>The <strong>Username</strong> is a required field
             and cannot be blank.</p>";
     }
-    else if($Password == null || $Password == EMPTY_STRING){
+    else if($password == null || $password == EMPTY_STRING){
         echo "<p style = 'color: red;'>The <strong>Password</strong> is a required field
             and cannot be blank.</p>";
     }
-    else if($userRows > 0){
+    /*else if($userRows > 0){
         echo "A user has already registered with this username";
-    }
+    }*/
     else if($emailRows > 0){
         echo "A user has already been registered with this email.";
     }
     else{
-        echo "<p><h2>Thank you for registering as:</h2></p>";
-        echo "<p>" . $userName ." </p>";
+        echo "<p><h2>Thank you for registering!</h2></p>";
+        echo "<p>" . $username ." </p>";
 
-        $sql = "INSERT INTO $tableName (Email , Username , Password) VALUES ('$email' , '$userName' , '$Password')";
+        $sql = "INSERT INTO $tableName (email, password) VALUES ('$email' , '$password')";
         $DBConnect->query($sql);  
 
     }
@@ -99,6 +82,5 @@ if($DBConnect){
             <li><a href=index.html>Main Menu</a></li>
         </ul>
 <hr>
-</div>
 </body>
 </html>
