@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <link rel="stylesheet" href="styles.css">
-<meta charset="UTF-8">
-<title>Registration Form</title>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <form action="registerhandler.php" method="POST">
-        <h1>Registration Form</h1>
-        <div class="background">
-        <label>Email: </label><br>
-        <input type="text" name="email"><br>
-        <label>Username</label><br>
-        <input type="text" name="userName"><br>
-        <label>Password</label><br>
-        <input type="password" name="password">
+	<div class="jumbotron text-center">
+		<h1>Register Now!!</h1>
+		<p>Register for great prices on completely real and "authentic"
+			products!</p>
+	</div>
 
-        <hr>
-        <input name = "submitButton" type="submit" value="Submit">
-        <ul>
-            <li><a href=index.html>Main Menu</a></li>
-        </ul>
-    </div>
-    </form>
+	<div class="container">
+		<div class="row">
+			<form action="registerhandler.php" method="POST">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="email">Email address:</label> <input type="text"
+							class="form-control" id="email" name="email">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label> <input type="password"
+							class="form-control" id="password" name="password">
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox"> I have read the <a
+							href="ToS.html">Terms of Service</a> and the <a
+							href="PriPol.html">Privacy Policy</a></label>
+					</div>
+					<input name = "submitButton" type="submit" value="Submit">
+				</div>
+			</form>
+			<div class="col-sm-4">
+				<img class="img-responsive" src="images/warehouse.jpg"
+					class="img-rounded" alt="What looks like our products">
+			</div>
+		</div>
+	</div>
 </body>
 </html>

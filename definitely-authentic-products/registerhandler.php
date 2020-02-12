@@ -1,7 +1,7 @@
 <!--
      Author: Aiden Yoshioka 
      Date: 09-08-2019
-     pagehandler.php 
+     registerhandler.php 
           
      This is the php code to handle the data from the html registration page.
      The code takes that data and sends it to the correct database and table (milestone1 , users)
@@ -20,7 +20,7 @@ require_once('myFuncs.php');
 
 #global login variables for mysql
 define('EMPTY_STRING' , "");
-$DBName = "notascam";
+$DBName = "NotAScam";
 $tableName = "users";
 
 //traps if there is no data
