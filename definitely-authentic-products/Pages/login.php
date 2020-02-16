@@ -17,10 +17,11 @@
         </style>
     </head>
     <body>
+        <?php include("fragments/navbar.php");?>
         <div class="jumbotron text-center">
             <h1>Login</h1>
         </div>
-  
+        
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">

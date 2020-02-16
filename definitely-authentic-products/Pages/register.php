@@ -17,6 +17,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<?php include("fragments/navbar.php"); ?>
 	<div class="jumbotron text-center">
 		<h1>Register Now!!</h1>
 		<p>Register for great prices on completely real and "authentic"
