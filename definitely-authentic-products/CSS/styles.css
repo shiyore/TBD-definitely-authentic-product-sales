@@ -24,9 +24,9 @@ audio, canvas, progress, video {
 	vertical-align: baseline
 }
 
-audio:not ([controls] ){
+audio:not [controls]{
 	display: none;
-	height: 0
+	height: 0;
 }
 
 [hidden], template {
@@ -89,7 +89,9 @@ sub {
 img {
 	border: 0
 }
-
+.pixel {
+	-ms-interpolation-mode: bicubic;
+}
 svg:not (:root ){
 	overflow: hidden
 }
