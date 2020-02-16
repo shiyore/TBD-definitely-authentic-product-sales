@@ -110,13 +110,11 @@ function getItems($category){
                 $products[$index] = array($row['product_ID'] , $row ['name'] , $row['price'] , $row['short_desc'] , $row['image'] , $row['category_ID'] , $row['description'] , $row['desc_image']);
                 ++$index;
             }
-            disconnect();
             return $products;
         }
         
     } else {
         echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
-        disconnect();
         return null;
     }
 

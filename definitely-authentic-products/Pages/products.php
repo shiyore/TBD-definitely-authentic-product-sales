@@ -12,7 +12,7 @@
 
 <?php 
   include("fragments/navbar.php"); 
-  include("utility.php");
+  include("../Scripts/utility.php");
 ?>
 
 <div class="container">
@@ -21,7 +21,7 @@
     <div class="row">
     <?php 
     $category = $_GET['category'];
-      echo $category;
+      //echo $category;
     $products = getItems($category); 
     foreach ($products as $product)
     {
@@ -33,12 +33,12 @@
         <p><?php echo "$" . $product[2]; ?></p>
         <div class="thumbnail">
           <p>
-          <a href="products.php?product=<?php echo $product[0]; ?>">
+          <a href="prodPage.php?product_ID=<?php echo $product[0]; ?>">
           <img alt="" src="<?php echo $product[4]; ?>" width='350px' height='215px'>
           </a>
           </p>
         </div>
-        <p><?php echo $data[3]; ?></p>
+        <p><?php echo $product[3]; ?></p>
       </div>
   
    <?php    
