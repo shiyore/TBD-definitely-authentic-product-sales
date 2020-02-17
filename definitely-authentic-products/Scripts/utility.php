@@ -123,9 +123,10 @@ function getItems($category){
 function searchItems($pattern)
 {
     $database = new Database();
-    $connection = $database->getConnected();
+    $connect = $database->getConnected();
     $products = [];
-    $sql = "SELECT * FROM products WHERE name LIKE '%' . $pattern . '%'";
+    $sql = "SELECT * FROM products WHERE name LIKE '%$pattern%'";
+    //echo $sql;
     if ($result = $connect->query($sql))
     {
         $nbrRows = $result->num_rows;

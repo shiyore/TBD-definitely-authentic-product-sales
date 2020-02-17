@@ -18,26 +18,29 @@
 
 <div class="container">
     <h3>Here are the products! LOOK AT THEM!</h3>
-    <form class="form-inline" action="products.php" method = "get">
+    <form class="form-inline" action="searchPage.php" method = "GET">
       <input class="form-control" type="text" name="search" value="search">
       <button type="submit" name="searchButton" value="searchButton" class="btn btn-default">Search</button>
     </form>
 
     <?php
-    if(isset($_GET['searchButton']))
+    if(isset($_GET['search']))
     {
+      //echo "search set";
       searchButton();
     }
     function searchButton()
     {
+      //echo "searchButton";
       ?>
       <div class="container box_color">
       <div class="row">
       <?php
       $search = $_GET['search'];
-      //echo $category;
+      //echo $search;
       $products = searchItems($search);
-      echo "Hello";
+      //print_r($products);
+      //echo "Hello";
       foreach ($products as $product)
       {
       ?>
