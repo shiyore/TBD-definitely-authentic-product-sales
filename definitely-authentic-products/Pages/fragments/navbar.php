@@ -17,6 +17,7 @@
             <li><a href="/definitely-authentic-products/Pages/products.php?category=1">Electric Devices</a></li>
             <li><a href="/definitely-authentic-products/Pages/products.php?category=2">A-parel</a></li>
             <li><a href="/definitely-authentic-products/Pages/products.php?category=3 ">Other...</a></li>
+            <li><a href="/definitely-authentic-products/Pages/searchPage.php">Search</a></li>
           </ul>
         </li>
         <!--<li><a href="#">Page 2</a></li>

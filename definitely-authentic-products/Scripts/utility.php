@@ -125,11 +125,11 @@ function searchItems($pattern)
     $database = new Database();
     $connection = $database->getConnected();
     $products = [];
-    $sql = "SELECT * FROM products WHERE name LIKE '%' . $pattern . '%' OR description LIKE '%' . $pattern . '%'";
+    $sql = "SELECT * FROM products WHERE name LIKE '%' . $pattern . '%'";
     if ($result = $connect->query($sql))
     {
-        $numRows = $result->num_rows;
-        if($result->num_rows === 0)
+        $nbrRows = $result->num_rows;
+        if($result->num_rows == 0)
         {
             return null;
         }

@@ -18,8 +18,13 @@
 
 <div class="container">
     <h3>Here are the products! LOOK AT THEM!</h3>
+    <form class="form-inline" action="products.php" method = "get">
+      <input class="form-control" type="text" name="search" value="search">
+      <button type="submit" name="searchButton" value="searchButton" class="btn btn-default">Search</button>
+    </form>
+
     <?php
-    if(array_key_exists('searchButton', $_GET))
+    if(isset($_GET['searchButton']))
     {
       searchButton();
     }
@@ -32,6 +37,7 @@
       $search = $_GET['search'];
       //echo $category;
       $products = searchItems($search);
+      echo "Hello";
       foreach ($products as $product)
       {
       ?>
@@ -59,41 +65,6 @@
   <?php
     }
     ?>
-    <form class="form-inline" action="products.php" method = "GET">
-      <input class="form-control" type="text" name="search" value="search">
-      <button type="submit" name="searchButton" class="btn btn-default">Search</button>
-    </form>
-    <div class="container box_color">
-    <div class="row">
-    <?php 
-    $category = $_GET['category'];
-      //echo $category;
-    $products = getItems($category);
-    foreach ($products as $product)
-    {
-    ?>
-      
-      <!-- This is where we put in the html code to show the products -->
-      <div class="col-sm-3 box_color">
-        <h3><?php echo $product[1]; ?></h3>
-        <p><?php echo "$" . $product[2]; ?></p>
-        <div class="thumbnail">
-          <p>
-          <a href="prodPage.php?product_ID=<?php echo $product[0]; ?>">
-          <img alt="" src="<?php echo $product[4]; ?>" width='350px' height='215px'>
-          </a>
-          </p>
-        </div>
-        <p><?php echo $product[3]; ?></p>
-      </div>
-  
-   <?php    
-      
-    }
-  
-    ?>
-    </div>
-  </div>
 </div>
 
 </body>
