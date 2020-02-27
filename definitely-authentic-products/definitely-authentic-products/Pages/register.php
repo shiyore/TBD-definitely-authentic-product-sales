@@ -26,7 +26,7 @@
 
 	<div class="container">
 		<div class="row">
-			<form action="Handlers/registerhandler.php" method="POST">
+			<form action="registerhandler.php" method="POST">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="email">Email address:</label> <input type="text"

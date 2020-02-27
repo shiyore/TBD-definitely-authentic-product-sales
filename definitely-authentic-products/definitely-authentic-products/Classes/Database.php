@@ -3,7 +3,7 @@
 class Database{
     function getConnected(){
         //echo "Database->getconnected invoked";
-        $this->dbhost = 'localhost';
+        $tthis->dbhost = 'localhost';
         $this->dbuser = 'root';
         $this->dbpass = 'root';
         $this->dbname = 'NotAScam';
@@ -15,7 +15,6 @@ class Database{
             die('Failed to connect to MySQL: ' . $this->dbconnect->connect_error);
         }
         //return the connection
-        //echo "connected";
         return $this->dbconnect;
     }
     function disconnect($connect){

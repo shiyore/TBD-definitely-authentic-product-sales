@@ -40,7 +40,9 @@ $DBConnect = connect($DBName);
 if($DBConnect){
     #Testing for valid data
     include('utility.php');
-
+    //$usernames = "SELECT username FROM $tableName WHERE username ='$userName'";
+    //$usernameCheck = $DBConnect->query($usernames);
+    //$userRows = $usernameCheck->num_rows;
     $emails = "SELECT email FROM $tableName WHERE email='$email'";
     $emailCheck = $DBConnect->query($emails);
     $emailRows = $emailCheck->num_rows;

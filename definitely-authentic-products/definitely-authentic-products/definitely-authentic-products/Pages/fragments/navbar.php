@@ -20,7 +20,8 @@
             <li><a href="/definitely-authentic-products/Pages/searchPage.php">Search</a></li>
           </ul>
         </li>
-        <li><a href="/definitely-authentic-products/Pages/usersPage.php">Users</a></li>
+        <!--<li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/definitely-authentic-products/Pages/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
