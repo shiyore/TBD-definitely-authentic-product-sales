@@ -151,4 +151,35 @@ function searchItems($pattern)
     }
 }
 
+function searchItemID($pattern)
+{
+    $database = new Database();
+    $connect = $database->getConnected();
+    $products = [];
+    $sql = "SELECT * FROM products WHERE ID = $pattern";
+    //echo $sql;
+    if ($result = $connect->query($sql))
+    {
+        $nbrRows = $result->num_rows;
+        if($result->num_rows == 0)
+        {
+            return null;
+        }
+        else
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $products[$index] = array($row['product_ID'] , $row ['name'] , $row['price'] , $row['short_desc'] , $row['image'] , $row['category_ID'] , $row['description'] , $row['desc_image']);
+                $index++;
+            }
+            return $products;
+        }
+    }
+    else 
+    {
+        echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+        return null;
+    }
+}
+
 ?>
