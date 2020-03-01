@@ -2,18 +2,17 @@
 
 public class User
 {
-    $creditcard = '';
-    $firstname = '';
-    $lastname = '';
+    $creditcard;
+    $email = '';
     $password = '';
-    $roles[] = '';
+    $roles[];
 
-    public function __construct($card, $fname, $lname, $pass)
+    public function __construct($card, $email, $pass, $r)
     {
         $this->creditcard = $card;
-        $this->firstname = $fname;
-        $this->lastname = $lname;
+        $this->email = $email;
         $this->password = $pass;
+        $this->roles = $r;
     }
 }
 ?>

@@ -11,12 +11,13 @@
 
 <html>
 <head>
+    <title>Register Handler</title>
     <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
 <?php
 //requires and includes
-require_once('myFuncs.php');
+require_once('../Scripts/myFuncs.php');
 
 #global login variables for mysql
 define('EMPTY_STRING' , "");
@@ -39,7 +40,7 @@ else{
 $DBConnect = connect($DBName);
 if($DBConnect){
     #Testing for valid data
-    include('utility.php');
+    include('../Scripts/utility.php');
 
     $emails = "SELECT email FROM $tableName WHERE email='$email'";
     $emailCheck = $DBConnect->query($emails);

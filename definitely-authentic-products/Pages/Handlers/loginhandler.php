@@ -30,14 +30,14 @@ session_start();
             }
         </style>
 
-<head>
+</head>
 
 
 <body>
 
 <?php
 //requires & includes
-require_once('myFuncs.php');
+require_once('../Scripts/myFuncs.php');
 
 
 // global login variables for mysql
