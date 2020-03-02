@@ -23,7 +23,8 @@
 <?php
 
 require_once "../../Classes/User.php";
-
+if ($_POST && isset($_POST['credit'], $_POST['email'], $_POST['password']))
+{
 $card = $_POST['credit'];
 $email = $_POST['email'];
 $pass = $_POST['password'];
@@ -53,6 +54,14 @@ $user = new User($card, $email, $pass, $rights)
 $user->addToTable();
 
 echo "<h3>New user created succesfully</h3>";
+
+header("Location: ../usersPage.php");
+}
+else
+{
+    echo "<p>Form submition failed</p>";
+    header("Location: ../usersPage.php");
+}
 ?>
 </body>
 </html>
