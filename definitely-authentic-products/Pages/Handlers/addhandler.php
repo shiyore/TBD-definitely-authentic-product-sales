@@ -23,11 +23,14 @@
 <?php
 
 require_once "../../Classes/User.php";
+//Check if POST values are set
 if ($_POST && isset($_POST['credit'], $_POST['email'], $_POST['password']))
 {
+//insantiate values for the 3 simple parts of a user
 $card = $_POST['credit'];
 $email = $_POST['email'];
 $pass = $_POST['password'];
+//Choosing which permissions the user has
 if ($_POST['customer'] == "cust")
 {
     if($_POST ['admin'] == "adm")
@@ -48,11 +51,12 @@ else
     $rights[] = {false, false};
 }
 
-echo "<p>$card</p>";
-
-$user = new User($card, $email, $pass, $rights)
+//echo "<p>$card</p>";
+//instantiating a user as well as calling it's add to table method to add the user's information to the database
+$user = new User($card, $email, $pass, $rights);
 $user->addToTable();
 
+//showing that the addition was successful and taking back to the users page.
 echo "<h3>New user created succesfully</h3>";
 
 header("Location: ../usersPage.php");
