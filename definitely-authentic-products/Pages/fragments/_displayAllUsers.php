@@ -22,7 +22,7 @@ function displayAllUsers($users){
             <td><?php echo $column[1];?></td>
             <td><?php echo $column[2];?></td>
             <td><a href='Handlers/deletehandler.php'>DELETE</a></td>
-            <td><a href="Handlers/editPage.php?email=<?php echo $column[1]?>">EDIT</a></td>
+            <td><a href="Handlers/register.php?email=<?php echo $column[1]?>&password=<?php echo $column[2]?>">EDIT</a></td>
           </tr>
       <?php                       
         }

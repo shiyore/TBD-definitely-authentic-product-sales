@@ -3,14 +3,14 @@ require_once "../Scripts/myFuncs.php";
 
 public class User
 {
-    $creditcard;
+    //$creditcard;
     $email = '';
     $password = '';
     $roles[];
 
-    public function __construct($card, $email, $pass, $r)
+    public function __construct($email, $pass, $r)
     {
-        $this->creditcard = $card;
+        //$this->creditcard = $card;
         $this->email = $email;
         $this->password = $pass;
         $this->roles = $r;
@@ -18,7 +18,7 @@ public class User
 
     public function addToTable()
     {
-        $card = $this->creditcard;
+        //$card = $this->creditcard;
         $mail = $this->email;
         $pass = $this->password;
         $perm = $this->roles;
@@ -35,7 +35,7 @@ public class User
             }
             else
             {
-                $sql = "INSERT INTO users (card, email, password, roles) VALUES ('$card', '$mail', '$pass', '$perm')";
+                $sql = "INSERT INTO users (email, password, roles) VALUES ($mail', '$pass', '$perm')";
                 $DB->query($sql);
             }
         }

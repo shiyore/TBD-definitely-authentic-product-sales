@@ -30,17 +30,28 @@
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="email">Email address:</label> <input type="text"
-							class="form-control" id="email" name="email">
+							class="form-control" id="email" name="email" <?php if (isset($_GET['email'])){?> value="<?php$_GET['email'];}?>">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password:</label> <input type="password"
-							class="form-control" id="password" name="password">
+							class="form-control" id="password" name="password" <?php if (isset($_GET['password'])){?> value="<?php$_GET['password'];}?>">
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> I have read the <a
 							href="ToS.html">Terms of Service</a> and the <a
 							href="PriPol.html">Privacy Policy</a></label>
 					</div>
+					<?php
+						if ($_SESSION['admin'] == true){
+					?>
+					<div class="form-group">
+						<label for="customer">Customer:</label> <input type="checkbox" id="customer" name="customer" checked="checked"
+						value="cust">
+					</div>
+					<div class="form-group">
+						<label for="admin">Admin:</label> <input type="checkbox" id="admin" name="admin" value="adm">
+					</div>
+						<?php}?>
 					<input name = "submitButton" type="submit" value="Submit">
 				</div>
 			</form>
