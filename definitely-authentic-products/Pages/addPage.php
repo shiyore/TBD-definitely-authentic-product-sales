@@ -19,21 +19,29 @@
 	<div class="container">
 		<div class="row">
 			<form action="Handlers/addhandler.php" method="POST">
-				<div class="col-sm-6">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label for="credit">Credit Card:</label> <input type="tel"
+							class="form-control" id="credit" name="credit">
+					</div>
 					<div class="form-group">
 						<label for="email">Email address:</label> <input type="text"
 							class="form-control" id="email" name="email">
 					</div>
 					<div class="form-group">
-						<label for="pwd">Password:</label> <input type="password"
+						<label for="password">Password:</label> <input type="password"
 							class="form-control" id="password" name="password">
+					</div>
+					<div class="form-group">
+						<label for="customer">Customer:</label> <input type="checkbox" id="customer" name="customer" checked="checked"
+						value="cust">
+					</div>
+					<div class="form-group">
+						<label for="admin">Admin:</label> <input type="checkbox" id="admin" name="admin" value="adm">
 					</div>
 					<input name = "submitButton" type="submit" value="Submit">
 				</div>
 			</form>
-			<div class="col-sm-4">
-				<img src="../images/warehouse.jpg">
-			</div>
 		</div>
 	</div>
 </body>

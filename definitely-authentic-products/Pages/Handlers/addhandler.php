@@ -6,12 +6,11 @@
 
     This is supposed to let an admin add a new user to the site without going through the register page
 */
-session_start();
 ?>
 <html>
 <head>
 
-    <title>Login Handler</title>
+    <title>Add Handler</title>
     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
@@ -22,3 +21,38 @@ session_start();
 <body>
 
 <?php
+
+require_once "../../Classes/User.php";
+
+$card = $_POST['credit'];
+$email = $_POST['email'];
+$pass = $_POST['password'];
+if ($_POST['customer'] == "cust")
+{
+    if($_POST ['admin'] == "adm")
+    {
+        $rights[] = {true, true};
+    }
+    else
+    {
+        $rights[] = {true, false};
+    }
+}
+elseif ($_POST['admin'] == "adm")
+{
+    $rights[] = {false, true};
+}
+else
+{
+    $rights[] = {false, false};
+}
+
+echo "<p>$card</p>";
+
+$user = new User($card, $email, $pass, $rights)
+$user->addToTable();
+
+echo "<h3>New user created succesfully</h3>";
+?>
+</body>
+</html>
