@@ -47,7 +47,8 @@ if($DBConnect){
     $emailRows = $emailCheck->num_rows;
     
     
-    
+    if (!isset($_SESSION['admin'] || !$_SESSION['admin']))
+    {
     //echo $userRows;
     if($email === null || $email === EMPTY_STRING){
     //if($firstName === NULL || $firstName == str_replace(" ", "" , $firstName)){
@@ -71,6 +72,30 @@ if($DBConnect){
         $sql = "INSERT INTO $tableName (email, password) VALUES ('$email' , '$password')";
         $DBConnect->query($sql);  
 
+    }
+    }
+    else
+    {
+        $roles[] = {$_POST['cust'], $_POST['adm'];}}
+        if($email === null || $email === EMPTY_STRING){
+                echo "<p style = 'color: red;'>The <strong>Email</strong> is a required field
+                    and cannot be blank.</p>";
+            }
+            else if($password == null || $password == EMPTY_STRING){
+                echo "<p style = 'color: red;'>The <strong>Password</strong> is a required field
+                    and cannot be blank.</p>";
+            }
+            else if($emailRows > 0){
+                $sql = "UPDATE $tableName SET password = $password, roles = $roles WHERE email = $email";
+            }
+            else{
+                echo "<p><h2>Thank you for registering!</h2></p>";
+                echo "<p>" . $username ." </p>";
+        
+                $sql = "INSERT INTO $tableName (email, password, roles) VALUES ('$email' , '$password', '$roles')";
+                $DBConnect->query($sql);  
+        
+            }
     }
         
     echo "<h2><p>Database Closing</p></h2>";
