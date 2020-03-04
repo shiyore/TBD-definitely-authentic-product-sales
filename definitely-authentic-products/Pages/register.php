@@ -35,7 +35,7 @@
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password:</label> <input type="password"
-							class="form-control" id="password" name="password" <?php if (isset($_GET['password'])){?> value="<?php$_GET['password'];}?>">
+							class="form-control" id="password" name="password" <?php if(isset($_GET['password'])){?> value="<?php$_GET['password'];} ?>">
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> I have read the <a

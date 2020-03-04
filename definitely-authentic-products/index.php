@@ -10,7 +10,17 @@
 </head>
 <body>
 
-<?php include("Pages/fragments/navbar.php"); ?>
+<?php 
+   include "Pages/fragments/header.php";
+    if(isset($_SESSION["admin"])){
+        include("Pages/fragments/adminNavbar.php");
+    }
+    else{
+        include("Pages/fragments/navbar.php");
+    }
+    if(isset($_SESSION["ID"]))
+      echo "ID:" . $_SESSION["ID"];
+  ?>
   
 <div class="container">
   <h3>We Are Not Scamming You Inc.</h3>

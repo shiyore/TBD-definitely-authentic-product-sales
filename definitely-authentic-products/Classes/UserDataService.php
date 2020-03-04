@@ -19,7 +19,7 @@ class userDataService{
             else{
                 //echo "<p>" . $result->num_rows . " users are registered.</p>";
                 while($row = $result->fetch_assoc()){
-                    $users[$index] = array($row['user_ID'] , $row ['email'] , $row['username']);
+                    $users[$index] = array($row['user_ID'] , $row ['email'] , $row['username'] , $row['password']);
                     ++$index;
                 }
                 return $users;
@@ -30,6 +30,19 @@ class userDataService{
             return null;
         }
         disconnect();
+    }
+    
+    //passes in a user id
+    function removeUser($id){
+        $database = new Database();
+        $connection = $database->getConnected();
+        $users = [];
+        $sql = "DELETE FROM `users` WHERE user_ID=" . $id;
+        if ($result = $connection->query($sql)) {
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+        }
     }
 }
 ?>

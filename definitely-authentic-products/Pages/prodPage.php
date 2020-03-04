@@ -11,7 +11,11 @@
 </head>
 <body>
     <?php 
-    include("fragments/navbar.php");
+    include("fragments/header.php");
+    if(isset($_SESSION["admin"]))
+        include("fragments/adminNavbar.php");
+    else
+        include("fragments/navbar.php");
     $product = $_GET['product_ID'];
     $db = new Database();
     $conn = $db->getConnected();

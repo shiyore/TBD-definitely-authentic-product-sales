@@ -4,6 +4,7 @@ require "UserDataService.php";
 ?>
 <?php
 class userBusinessService{
+
     function __construct(){
         //echo "new business service<br>";
     }
@@ -12,6 +13,10 @@ class userBusinessService{
 
         $service = new UserDataService();
         return $service->findAllUsers();
+    }
+    function deleteUser($id){
+        $service = new UserDataService();
+        return $service->removeUser($id);
     }
 }
 ?>
