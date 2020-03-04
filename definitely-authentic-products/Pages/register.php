@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,29 +23,42 @@
 		<h1>Register Now!!</h1>
 		<p>Register for great prices on completely real and "authentic"
 			products!</p>
+		<?php 
+		if($_GET) :
+			$email = $_GET['email'];
+			$password = $_GET['password'];
+		if($_SESSION['admin'] != null)
+		{
+			$admin = true;
+		}
+		else
+		{
+			$admin = false;
+		}
+		?>
 	</div>
 
-	<div class="container">
+	<!<div class="container">
 		<div class="row">
 			<form action="Handlers/registerhandler.php" method="POST">
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<div class="form-group">
 					<!--if the user got to this form with an email/password already set, put it in the field since the only way that happens is through clicking edit in the user page-->
 						<label for="email">Email address:</label> <input type="text"
-							class="form-control" id="email" name="email" <?php if (isset($_GET['email'])){?> value="<?php$_GET['email'];}?>">
+							class="form-control" id="email" name="email" <?php if ($email != null){?> value="<?php echo $email;}?>">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password:</label> <input type="password"
-							class="form-control" id="password" name="password" <?php if (isset($_GET['password'])){?> value="<?php$_GET['password'];}?>">
+							class="form-control" id="password" name="password" <?php if ($password != null){?> value="<?php echo $password;}?>">
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> I have read the <a
 							href="ToS.html">Terms of Service</a> and the <a
 							href="PriPol.html">Privacy Policy</a></label>
-					</div>
+					</div> 
 					<?php
 						//if you're an admin, you get the additional option of choosing roles
-						if ($_SESSION['admin'] == true){
+						if ($admin){;
 					?>
 					<div class="form-group">
 						<label for="customer">Customer:</label> <input type="checkbox" id="customer" name="customer" checked="checked"
@@ -53,7 +67,7 @@
 					<div class="form-group">
 						<label for="admin">Admin:</label> <input type="checkbox" id="admin" name="admin" value="adm">
 					</div>
-						<?php}?>
+					<?php}?>
 					<input name = "submitButton" type="submit" value="Submit">
 				</div>
 			</form>
