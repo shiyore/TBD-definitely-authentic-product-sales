@@ -46,8 +46,8 @@ if($DBConnect){
     $emailCheck = $DBConnect->query($emails);
     $emailRows = $emailCheck->num_rows;
     
-    
-    if (!isset($_SESSION['admin'] || !$_SESSION['admin']))
+    //If you aren't an admin, then register a user as usual with the role of 1, customer
+    if (!isset($_SESSION['admin']) || !$_SESSION['admin'])
     {
     //echo $userRows;
     if($email === null || $email === EMPTY_STRING){
@@ -66,31 +66,43 @@ if($DBConnect){
         echo "A user has already been registered with this email.";
     }
     else{
-        echo "<p><h2>Thank you for registering!</h2></p>";
-        echo "<p>" . $username ." </p>";
+        echo "<h2>Thank you for registering!</h2>";
+        //echo "<p>" . $username ." </p>";
 
-        $sql = "INSERT INTO $tableName (email, password) VALUES ('$email' , '$password')";
+        $sql = "INSERT INTO $tableName (email, password, roles) VALUES ('$email' , '$password' , 1";
         $DBConnect->query($sql);  
 
     }
     }
     else
     {
-        $roles[] = {$_POST['cust'], $_POST['adm'];}}
-        if($email === null || $email === EMPTY_STRING){
+        //if you are a user, then either update(for editting) or insert (for creating a new user) into the database.
+        //the role system is like linux permissions. 1 = customer, 2 = admin, 4 = super user. 3 would be customer and admin (1+2), 5 would be super user customer, and so on
+        $roles = 0;
+        if($_POST['cust'])
+        {
+            $roles += 1;
+        }
+        if($_POST['adm'])
+        {
+            $roles += 2;
+        }
+        if($email === null || $email === EMPTY_STRING)
+        {
                 echo "<p style = 'color: red;'>The <strong>Email</strong> is a required field
                     and cannot be blank.</p>";
             }
-            else if($password == null || $password == EMPTY_STRING){
+            else if($password === null || $password === EMPTY_STRING)
+            {
                 echo "<p style = 'color: red;'>The <strong>Password</strong> is a required field
                     and cannot be blank.</p>";
             }
-            else if($emailRows > 0){
+            else if($emailRows > 0)
+            {
                 $sql = "UPDATE $tableName SET password = $password, roles = $roles WHERE email = $email";
             }
             else{
-                echo "<p><h2>Thank you for registering!</h2></p>";
-                echo "<p>" . $username ." </p>";
+                echo "<h2>Thank you for registering!</h2>";
         
                 $sql = "INSERT INTO $tableName (email, password, roles) VALUES ('$email' , '$password', '$roles')";
                 $DBConnect->query($sql);  

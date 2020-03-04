@@ -29,6 +29,7 @@
 			<form action="Handlers/registerhandler.php" method="POST">
 				<div class="col-sm-6">
 					<div class="form-group">
+					<!--if the user got to this form with an email/password already set, put it in the field since the only way that happens is through clicking edit in the user page-->
 						<label for="email">Email address:</label> <input type="text"
 							class="form-control" id="email" name="email" <?php if (isset($_GET['email'])){?> value="<?php$_GET['email'];}?>">
 					</div>
@@ -42,6 +43,7 @@
 							href="PriPol.html">Privacy Policy</a></label>
 					</div>
 					<?php
+						//if you're an admin, you get the additional option of choosing roles
 						if ($_SESSION['admin'] == true){
 					?>
 					<div class="form-group">

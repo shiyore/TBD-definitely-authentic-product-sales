@@ -22,14 +22,14 @@ function displayAllUsers($users){
             <td><?php echo $column[1];?></td>
             <td><?php echo $column[2];?></td>
             <td><a href='Handlers/deletehandler.php'>DELETE</a></td>
-            <td><a href="Handlers/register.php?email=<?php echo $column[1]?>&password=<?php echo $column[2]?>">EDIT</a></td>
+            <td><a href="register.php?email=<?php echo $column[1]?>&password=<?php echo $column[3]?>">EDIT</a></td>
           </tr>
       <?php                       
         }
       ?>
   </tbody>
 </table>
-<a href='Handlers/addPage.php'>Add User</a>
+<a href='Handlers/register.php'>Add User</a>
 <?php
 }
 ?>
