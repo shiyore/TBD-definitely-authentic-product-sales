@@ -11,8 +11,14 @@
 <body>
 
 <?php 
-  //including our navbar
-  include("fragments/navbar.php"); 
+  //starting sessions
+  include("fragments/header.php");
+   include("fragments/header.php");
+  //loading navbars
+    if(isset($_SESSION["admin"]))
+        include("fragments/adminNavbar.php");
+    else
+        include("fragments/navbar.php");
   //adding our search methods, in the future we hope to add these to a new class instead of the utility file
   require_once("../Scripts/utility.php");
 

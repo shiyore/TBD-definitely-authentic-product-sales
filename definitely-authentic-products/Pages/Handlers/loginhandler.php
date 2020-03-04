@@ -8,7 +8,7 @@
      I wanted to make the framework for creating a functional account in the near future.
 -->
 <?php
-session_start();
+include "../fragments/header.php";
 ?>
 <html>
 <head>
@@ -37,7 +37,7 @@ session_start();
 
 <?php
 //requires & includes
-require_once('../Scripts/myFuncs.php');
+require_once('../../Scripts/myFuncs.php');
 
 
 // global login variables for mysql
@@ -75,8 +75,9 @@ if($DBConnect){
             if ($nbrRows == 1) {
                 echo "<p > Login was successful.</p>";
                 $row = $result -> fetch_assoc();
-                setUserID($row['ID']);
-                echo "<h1>Successfully signed into: " . $email . "</h1>";
+                //setUserID($row['ID']);
+                $_SESSION["ID"] = $row['ID'];
+                //echo "<h1>Successfully signed into: " . $email . "</h1>";
                 include('loginResponse.php');
                 
             } else if ($nbrRows == 0) {
@@ -102,11 +103,5 @@ if($DBConnect){
 
 
 ?>
-</php>
-	<hr>
-	<hr>
-	<ul>
-		<li><a href="login.html">Login Page</a></li>
-	</ul>
 </body>
 </html>

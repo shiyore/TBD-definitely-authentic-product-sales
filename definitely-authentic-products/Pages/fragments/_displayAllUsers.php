@@ -21,7 +21,7 @@ function displayAllUsers($users){
             <th scope="row"><?php echo $column[0]; ?></th>
             <td><?php echo $column[1];?></td>
             <td><?php echo $column[2];?></td>
-            <td><a href='Handlers/deletehandler.php'>DELETE</a></td>
+            <td><a href="Handlers/deletehandler.php?ID=<?php echo $column[0]; ?>">DELETE</a></td>
             <td><a href="register.php?email=<?php echo $column[1]?>&password=<?php echo $column[3]?>">EDIT</a></td>
           </tr>
       <?php                       

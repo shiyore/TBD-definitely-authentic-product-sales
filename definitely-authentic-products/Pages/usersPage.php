@@ -10,9 +10,11 @@
 </head>
 <body>
 
-<?php 
+<?php
+  //start sessions
+  include("fragments/header.php");
   //including our navbar
-  include("fragments/navbar.php"); 
+  include("fragments/adminNavbar.php"); 
   //adding our search methods, in the future we hope to add these to a new class instead of the utility file
   require_once("../Scripts/utility.php");
   //includes for the table
@@ -22,7 +24,7 @@
 ?>
 
 <div class="container">
-    <h3>here are the users, BITCH</h3>
+    <h3>Here are the users</h3>
       <div class="container box_color">
       <div class="row">
       <?php
