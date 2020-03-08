@@ -24,10 +24,12 @@
 		<p>Register for great prices on completely real and "authentic"
 			products!</p>
 		<?php 
-		if($_GET) :
+		if($_GET)
+		{
 			$email = $_GET['email'];
 			$password = $_GET['password'];
-		if($_SESSION['admin'] != null)
+		}
+		if(isset($_SESSION['admin']))
 		{
 			$admin = true;
 		}
@@ -38,7 +40,7 @@
 		?>
 	</div>
 
-	<!<div class="container">
+	<<div class="container">
 		<div class="row">
 			<form action="Handlers/registerhandler.php" method="POST">
 				<div class="col-sm-8">
@@ -58,7 +60,17 @@
 					</div> 
 					<?php
 						//if you're an admin, you get the additional option of choosing roles
-						if ($admin){;
+						if ($admin)
+						{
+							echo '<div class="form-group">
+							<label for="customer">Customer:</label> <input type="checkbox" id="customer" name="customer" checked="checked"
+							value="cust">
+						</div>
+						<div class="form-group">
+							<label for="admin">Admin:</label> <input type="checkbox" id="admin" name="admin" value="adm">
+						</div>';
+						}
+						/*
 					?>
 					<div class="form-group">
 						<label for="customer">Customer:</label> <input type="checkbox" id="customer" name="customer" checked="checked"
@@ -67,7 +79,7 @@
 					<div class="form-group">
 						<label for="admin">Admin:</label> <input type="checkbox" id="admin" name="admin" value="adm">
 					</div>
-					<?php}?>
+					<?php}*/?>
 					<input name = "submitButton" type="submit" value="Submit">
 				</div>
 			</form>
