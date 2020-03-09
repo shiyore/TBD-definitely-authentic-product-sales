@@ -32,25 +32,45 @@
       $category_ID = $_GET['category'];
       //echo $category;
       $products = getItems($category_ID);
+      $id = 0;
       foreach ($products as $product)
       {
       ?>
         <!-- This is where we put in the html code to show the products -->
         <div class="col-sm-3 box_color">
-          <h3><?php echo $product[1]; ?></h3>
-          <p><?php echo "$" . $product[2]; ?></p>
-          <div class="thumbnail">
+          
+          <div Style="height: 450px;" class="thumbnail">
+            <h3><?php echo $product[1]; ?></h3>
+            <p><?php echo "$" . $product[2]; ?></p>
             <p>
             <a href="prodPage.php?product_ID=<?php echo $product[0]; ?>">
-            <img alt="" src="<?php echo $product[4]; ?>" width='350px' height='215px'>
+            <img Style= "height: 200px; width: 200px;" alt="" src="<?php echo $product[4]; ?>" width='350px' height='215px'>
             </a>
             </p>
+            <p><?php echo $product[3]; ?></p>
+            <p>Amount you buy: <span id="productCount<?php echo $id; ?>"></span></p>
+            <Script>
+              var slider = document.getElementById("myRange<?php echo $id;?>");
+              var output = document.getElementById("productCount<?php echo $id;?>");
+              output.innerHTML = slider.value; // Display the default slider value
+                
+              // Update the current slider value (each time you drag the slider handle)
+              slider.oninput = function() {
+                  output.innerHTML = this.value;
+              } 
+            </Script>
+            <div class="slidecontainer">
+                  <input type="range" min="1" max="800" value="50" class="slider" id="myRange<?php echo $id;?>">
+            </div>
+            <div align="center" class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+              <label class="custom-control-label" for="defaultChecked2"></label>
+            </div>
           </div>
-          <p><?php echo $product[3]; ?></p>
         </div>
   
    <?php    
-      
+      $id++;
     }
   
     ?>

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 16, 2020 at 03:10 AM
--- Server version: 5.7.26
--- PHP Version: 7.3.7
+-- Generation Time: Mar 08, 2020 at 01:59 AM
+-- Server version: 5.6.34-log
+-- PHP Version: 7.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,8 +19,45 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `NotAScam`
+-- Database: `notascam`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cardinfo`
+--
+
+CREATE TABLE `cardinfo` (
+  `card_ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `cardNumber` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `nameOnCard` varchar(75) CHARACTER SET utf8 NOT NULL,
+  `cvc` int(3) NOT NULL,
+  `expiration` varchar(25) CHARACTER SET utf8 NOT NULL,
+  `address` varchar(75) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cardinfo`
+--
+
+INSERT INTO `cardinfo` (`card_ID`, `user_ID`, `cardNumber`, `nameOnCard`, `cvc`, `expiration`, `address`) VALUES
+(1, 1, '4888606201730507', 'FurFag Uwudle', 627, '3/23', '36 South Baker Ave.\r\nBarberton, OH 44203');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `product_ID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -46,7 +85,7 @@ INSERT INTO `products` (`product_ID`, `name`, `price`, `short_desc`, `image`, `c
 (2, 'Desktop', 299.99, 'A working desktop computer PC windows!', '../images/desktop.jpg', 1, 'A desktop perfect for word processing, coding, and consuming media.', '../images/desktop.jpg'),
 (3, 'Plastic Dogs', 4.20, 'Dogs as toys!', '../images/dogs.jpg', 3, 'Does your annoying kid keep whining about having a dog? Well, now you can get him two for the low price of $4.20 and not have to worry about taking care of them!', '../images/dogs.jpg'),
 (4, 'Dr.Boy', 46.92, 'Play popular games on the innovative Dr.Boy mobile game console!', '../images/DrBoy.jpg', 1, 'A innovative electronic device that allows you to play the most modern games anywhere. The Dr. Boy saves you from boredom from your own room, all the way to the board meeting you dread.', '../images/DrBoy.jpg'),
-(5, 'Fony DualShock Controller', 27.99, 'A good quality controller for your game console needs!', '../FonyController.jpg', 1, 'An authentic controller used for a video game console. Similar products have terrible price. We have good low price.', '../images/FonyController.jpg'),
+(5, 'Fony DualShock Controller', 27.99, 'A good quality controller for your game console needs!', '../images/FonyController.jpg', 1, 'An authentic controller used for a video game console. Similar products have terrible price. We have good low price.', '../images/FonyController.jpg'),
 (6, 'Frans Tromers: Dark of the Moon', 8.99, 'Fight the encroching danger of the Deceptionions!', '../images/franstromers.png', 3, 'Join Hoptimus Crime in saving Bribertron and defeating the Deceptioncons. This toy will bring joy to your alive son.', '../images/franstromers.png'),
 (7, 'GameKing', 15.71, 'A cheap option for game playing on the go!', '../images/Gameking.jpg', 1, 'Does your son not deserve the Dr.Boy? The GameKing is for you then! Play games wherever you go, however it will not be as good as the Dr.Boy, but is a good cheaper option.', '../images/Gameking.jpg'),
 (8, 'DDR5 GTX760', 46.90, 'Graphics card for gaming! Almost new!', '../images/gpu.jpg', 1, 'The GTX760 graphics card with DDR5 ram is amazing speed! For gaming needs, this will fulfill all your dreams and fantasies.', '../images/gpu2.jpg'),
@@ -74,20 +113,37 @@ CREATE TABLE `users` (
   `user_ID` int(11) NOT NULL,
   `email` varchar(75) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL
+  `password` varchar(45) DEFAULT NULL,
+  `social` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='This is the users table, and is subject to change.  ';
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_ID`, `email`, `username`, `password`) VALUES
-(1, 'email@email.com', 'username', 'password'),
-(2, 'newuser@gmail.com', NULL, 'password');
+INSERT INTO `users` (`user_ID`, `email`, `username`, `password`, `social`) VALUES
+(1, 'email@email.com', 'username', 'password', ''),
+(2, 'gaylord@email.com', NULL, 'gaylord', ''),
+(3, 'carson@email.com', NULL, 'mojorino', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cardinfo`
+--
+ALTER TABLE `cardinfo`
+  ADD PRIMARY KEY (`card_ID`),
+  ADD KEY `user_ID` (`user_ID`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_ID`),
+  ADD KEY `user_ID` (`user_ID`),
+  ADD KEY `product_ID` (`product_ID`);
 
 --
 -- Indexes for table `products`
@@ -106,16 +162,25 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cardinfo`
+--
+ALTER TABLE `cardinfo`
+  MODIFY `card_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_ID` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

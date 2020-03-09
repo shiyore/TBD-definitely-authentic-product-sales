@@ -29,7 +29,7 @@ function displayAllUsers($users){
       ?>
   </tbody>
 </table>
-<a href='Handlers/register.php'>Add User</a>
+<a href='../Pages/register.php'>Add User</a>
 <?php
 }
 ?>

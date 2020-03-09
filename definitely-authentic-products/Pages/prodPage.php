@@ -35,7 +35,7 @@
                     <?//php echo $info[3];?>
                     <h2><?php echo "$".$info[1];?></h2>
                     <hr>
-                    <img style = "-ms-interpolation-mode: bicubic;" src="<?php echo $info[3];?>">
+                    <img style = "-ms-interpolation-mode: bicubic; width: 500px; height: 500px;" src="<?php echo $info[3];?>">
                     
                 </div>
             </div>
