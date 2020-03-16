@@ -33,15 +33,17 @@
       $uid = $_POST['user_ID'];
 
       $adds = getAdds(1);
+      $id = 1;
       foreach ($adds as $add)
       {
       ?>
         <!-- This is where we put in the html code to show the products -->
         <div class="col-sm-3 box_color">
           
-          <div Style="height: 300px; width: 400px;" class="thumbnail">
+          <div Style="height: 320px; width: 400px;" class="thumbnail">
             <h3><?php echo "Address: " . $add; ?></h3>
             <p><img Style= "height: 200px; width: 200px;" alt="" src="../images/greathouse.jpg" width='350px' height='215px'></p>
+            <a href="checkoutPage.php?add_ID=<?php echo $id?>" class="btn btn-info" role="button">Finish Checkout</a>
           </div>
         </div>
   
@@ -52,7 +54,7 @@
     ?>
     </div>
   </div>
-  <a href="Handlers/checkoutHandler.php" class="btn btn-info" role="button">Link Button</a>
+  <a href="addAddressPage.php" class="btn btn-success" role="button">Add Address</a>
 </div>
 
 </body>

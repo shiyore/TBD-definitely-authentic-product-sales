@@ -34,6 +34,7 @@
       //echo $category;
       $uid = $_POST['user_ID'];
       $cards = getCards(1);
+      $id = 1;
       foreach ($cards as $card)
       {
       ?>
@@ -42,6 +43,7 @@
           
           <div Style="height: 200px;" class="thumbnail">
             <h3><?php echo "Number: " . $card[2]; ?></h3>
+            <a href="addressPage.php?card_ID = <?php echo $id?>" class="btn btn-info" role="button">Next</a>
           </div>
         </div>
   
@@ -52,7 +54,7 @@
     ?>
     </div>
   </div>
-  <a href="addressPage.php" class="btn btn-info" role="button">Link Button</a>
+  <a href="addCreditPage.php" class="btn btn-success" role="button">Add Card</a>
 </div>
 
 </body>

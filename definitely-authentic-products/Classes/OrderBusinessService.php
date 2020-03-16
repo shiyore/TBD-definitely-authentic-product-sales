@@ -14,9 +14,29 @@ class orderBusinessService{
         $service = new orderDataService();
         return $service->findCurrentOrder($id);
     }
+    function getOrderID($id)
+    {
+        $service = new orderDataService();
+        return $service->getOrderID($id);
+    }
     function deleteUser($id){
         $service = new UserDataService();
         return $service->removeUser($id);
+    }
+    function checkout($id)
+    {
+        $service = new orderDataService();
+        return $service->checkout($id);
+    }
+    function addAddress($id, $oid)
+    {
+        $service = new orderDataService();
+        return $service->addAddress($id, $oid);
+    }
+    function getOrderItems($id)
+    {
+        $service = new orderDataService();
+        return $service->findCurrentOrder($id);
     }
 }
 ?>

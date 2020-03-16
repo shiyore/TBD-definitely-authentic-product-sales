@@ -11,6 +11,7 @@ class orderDataService{
         $connection = $database->getConnected();
         $orderItems = [];
         $order_id = 0;
+        echo "php gay";
         
         //getting the order id
         $sql = "SELECT * FROM orders WHERE active = true AND user_ID = $id";
@@ -78,6 +79,51 @@ class orderDataService{
         } else {
             echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
         }
+    }
+
+    function getOrderID($id){
+        $database = new Database();
+        $connection = $database->getConnected();
+        $order_id = 0;
+        
+        //getting the order id
+        $sql = "SELECT * FROM orders WHERE active = true AND user_ID = $id";
+        if ($result = $connection->query($sql)) {
+            $nbrRows = $result->num_rows;
+            //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+            if($result->num_rows === 0){
+                //echo "empty";
+                return null;
+            }
+            else{
+                //echo "<p>" . $result->num_rows . " users are registered.</p>";
+                $order_id = $result->fetch_assoc();
+                $order_id = $order_id['order_ID'];
+                return $order_id;
+            }
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+            return null;
+        }
+    }
+
+    function checkout($id)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        $sql = "UPDATE orders SET active = false WHERE order_ID = " . $id;
+        $connection->query($sql);
+    }
+
+    function addAddress($id, $oid)
+    {
+        //echo "Hello ID" . $id;
+        //echo ". Hello OID" . $oid;
+        $database = new Database();
+        $connection = $database->getConnected();
+        $sql = "UPDATE orders SET add_ID = $id WHERE order_ID = $oid";
+        $connection->query($sql);
     }
 }
 ?>
