@@ -55,7 +55,7 @@
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> I have read the <a
-							href="ToS.html">Terms of Service</a> and the <a	
+							href="ToS.html">Terms of Service</a> and the <a
 							href="PriPol.html">Privacy Policy</a></label>
 					</div> 
 					<?php

@@ -17,7 +17,7 @@
 <body>
 <?php
 //requires and includes
-require_once('../../Scripts/myFuncs.php');
+require_once('../Scripts/myFuncs.php');
 
 #global login variables for mysql
 define('EMPTY_STRING' , "");

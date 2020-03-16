@@ -9,47 +9,50 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <?php 
-  //including our navbar
-  include("fragments/navbar.php"); 
+  //starting sessions
+  include("fragments/header.php");
+   include("fragments/header.php");
+   //ini_set('display errors', true);
+   //error_reporting(E_ALL);
+  //loading navbars
+    if(isset($_SESSION["admin"]))
+        include("fragments/adminNavbar.php");
+    else
+        include("fragments/navbar.php");
   //adding our search methods, in the future we hope to add these to a new class instead of the utility file
   require_once("../Scripts/utility.php");
 
 ?>
 
 <div class="container">
-    <h3>Here are the products! LOOK AT THEM!</h3>
+    <h3>Which credit card would you like to use to give us money?</h3>
       <div class="container box_color">
       <div class="row">
       <?php
-      $category_ID = $_GET['category'];
-      //echo $category;
-      $products = getItems($category_ID);
-      foreach ($products as $product)
+      $uid = $_POST['user_ID'];
+
+      $adds = getAdds(1);
+      foreach ($adds as $add)
       {
       ?>
         <!-- This is where we put in the html code to show the products -->
         <div class="col-sm-3 box_color">
-          <h3><?php echo $product[1]; ?></h3>
-          <p><?php echo "$" . $product[2]; ?></p>
-          <div class="thumbnail">
-            <p>
-            <a href="prodPage.php?product_ID=<?php echo $product[0]; ?>">
-            <img alt="" src="<?php echo $product[4]; ?>" width='350px' height='215px'>
-            </a>
-            </p>
+          
+          <div Style="height: 300px; width: 400px;" class="thumbnail">
+            <h3><?php echo "Address: " . $add; ?></h3>
+            <p><img Style= "height: 200px; width: 200px;" alt="" src="../images/greathouse.jpg" width='350px' height='215px'></p>
           </div>
-          <p><?php echo $product[3]; ?></p>
         </div>
   
    <?php    
-      
+      $id++;
     }
   
     ?>
     </div>
   </div>
+  <a href="Handlers/checkoutHandler.php" class="btn btn-info" role="button">Link Button</a>
 </div>
 
 </body>

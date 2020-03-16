@@ -124,6 +124,7 @@ function searchItems($pattern)
 {
     $database = new Database();
     $connect = $database->getConnected();
+    
     $products = [];
     $sql = "SELECT * FROM products WHERE name LIKE '%$pattern%'";
     //echo $sql;
@@ -143,6 +144,73 @@ function searchItems($pattern)
             }
             return $products;
         }
+    }
+    else 
+    {
+        echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+        return null;
+    }
+}
+
+function getCards($pattern)
+{
+    $database = new Database();
+    $connection = $database->getConnected();
+    $cards = [];
+    $sql = "SELECT cardNumber, nameOnCard, cvc, expiration, address FROM `cardinfo`  WHERE user_ID=".$pattern;
+    //$sql = "SELECT * FROM products";
+    if ($result = $connection->query($sql)) 
+    {
+        $nbrRows = $result->num_rows;
+        //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+        if($result->num_rows === 0)
+        return null;
+        else
+        {
+            //echo "<p>" . $result->num_rows . " users are registered.</p>";
+            while($row = $result->fetch_assoc())
+            {
+                //$products[$index] = array($row['product_ID'] , $row ['name'] , $row['price'] , $row['short_desc'] , $row['image'] , $row['category_ID'] , $row['description'] , $row['desc_image']);
+                $cards[$index] = array($row['card_ID'], $row['user_ID'], $row['cardNumber'], $row['nameOnCard'], $row['cvc'], 
+                $row['expiration'], $row['address']);
+                ++$index;
+            }
+        //return $products;
+        return $cards;
+        }        
+    }
+    else 
+    {
+        echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+        return null;
+    }
+}
+
+function getAdds($pattern)
+{
+    $database = new Database();
+    $connection = $database->getConnected();
+    $adds = [];
+    $sql = "SELECT home FROM `addresses`  WHERE user_ID=".$pattern;
+    //$sql = "SELECT * FROM products";
+    if ($result = $connection->query($sql)) 
+    {
+        $nbrRows = $result->num_rows;
+        //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+        if($result->num_rows === 0)
+        return null;
+        else
+        {
+            //echo "<p>" . $result->num_rows . " users are registered.</p>";
+            while($row = $result->fetch_assoc())
+            {
+                //$products[$index] = array($row['product_ID'] , $row ['name'] , $row['price'] , $row['short_desc'] , $row['image'] , $row['category_ID'] , $row['description'] , $row['desc_image']);
+                $cards[$index] = $row['home'];
+                ++$index;
+            }
+        //return $products;
+        return $cards;
+        }        
     }
     else 
     {
