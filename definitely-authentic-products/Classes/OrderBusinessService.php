@@ -22,5 +22,11 @@ class orderBusinessService{
         $service = new orderDataService();
         $service->addItem(1,$id,$quantity);
     }
+    
+    //this deletes all the current items in the cart
+    function endItAll($user_id){
+        $service = new orderDataService();
+        $service->removeItems($user_id);
+    }
 }
 ?>

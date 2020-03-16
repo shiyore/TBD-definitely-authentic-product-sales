@@ -129,5 +129,42 @@ class orderDataService{
             echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
         }
     }
+    
+    function removeItems($user_id){
+        $user_id = 1;
+        $database = new Database();
+        $connection = $database->getConnected();
+        $order_id = 0;
+        
+        //getting the order id
+        $sql = "SELECT * FROM orders WHERE active = true AND user_ID = $user_id";
+        if ($result = $connection->query($sql)) {
+            $nbrRows = $result->num_rows;
+            //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+            if($result->num_rows === 0){
+                //echo "empty";
+                return null;
+            }
+            else{
+                //echo "<p>" . $result->num_rows . " users are registered.</p>";
+                $order_id = $result->fetch_assoc();
+                $order_id = $order_id['order_ID'];
+                //echo $order_id;
+            }
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+            return null;
+        }
+        
+        //deleting all items from the cart
+         $sql = "DELETE FROM `order_info` WHERE order_ID = $order_id";
+        if ($result = $connection->query($sql)) {
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+        }
+        
+    }
 }
 ?>

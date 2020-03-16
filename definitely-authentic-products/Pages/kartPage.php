@@ -35,7 +35,7 @@
       ?>
     </div>
     <div class="col-sm-4 box_color">
-          <a href="deleteOrder.php" class="btn btn-success" role="button">Cancel Order</a>
+          <a href="Handlers/cancelAll.php" class="btn btn-success" role="button">Cancel Order</a>
     </div>
     <div class="col-sm-4 box_color">
     </div>
