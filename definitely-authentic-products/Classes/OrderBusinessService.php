@@ -18,5 +18,9 @@ class orderBusinessService{
         $service = new UserDataService();
         return $service->removeUser($id);
     }
+    function addToKart($id,$quantity){
+        $service = new orderDataService();
+        $service->addItem(1,$id,$quantity);
+    }
 }
 ?>

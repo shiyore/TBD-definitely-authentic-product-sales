@@ -55,17 +55,6 @@ class orderDataService{
         disconnect();
     }
     
-    function addItem($id,$num){
-        $database = new Database();
-        $connection = $database->getConnected();
-        $users = [];
-        $sql = "INSERT ";
-        if ($result = $connection->query($sql)) {
-            
-        } else {
-            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
-        }
-    }
     
     //passes in a user id
     function removeOrder($id){
@@ -73,6 +62,67 @@ class orderDataService{
         $connection = $database->getConnected();
         $users = [];
         $sql = "DELETE FROM `users` WHERE user_ID=" . $id;
+        if ($result = $connection->query($sql)) {
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+        }
+    }
+    
+    function getOrderID($id){
+        $database = new Database();
+        $connection = $database->getConnected();
+        $order_id = 0;
+        
+        //getting the order id
+        $sql = "SELECT * FROM orders WHERE active = true AND user_ID = $id";
+        if ($result = $connection->query($sql)) {
+            $nbrRows = $result->num_rows;
+            //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+            if($result->num_rows === 0){
+                //echo "empty";
+                return null;
+            }
+            else{
+                //echo "<p>" . $result->num_rows . " users are registered.</p>";
+                $order_id = $result->fetch_assoc();
+                $order_id = $order_id['order_ID'];
+                return $order_id;
+            }
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+            return null;
+        }
+    }
+      function addItem($user_id,$id,$num){
+        $database = new Database();
+        $connection = $database->getConnected();
+        $order_id = 0;
+        
+        //getting the order id
+        $sql = "SELECT * FROM orders WHERE active = true AND user_ID = $user_id";
+        if ($result = $connection->query($sql)) {
+            $nbrRows = $result->num_rows;
+            //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+            if($result->num_rows === 0){
+                //echo "empty";
+                return null;
+            }
+            else{
+                //echo "<p>" . $result->num_rows . " users are registered.</p>";
+                $order_id = $result->fetch_assoc();
+                $order_id = $order_id['order_ID'];
+                //echo $order_id;
+            }
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+            return null;
+        }
+        //echo $order_id;
+        
+        $sql = "INSERT INTO order_info(`order_ID`,`product_ID`, `quantity`) VALUES ($order_id,$id,$num)";
         if ($result = $connection->query($sql)) {
             
         } else {

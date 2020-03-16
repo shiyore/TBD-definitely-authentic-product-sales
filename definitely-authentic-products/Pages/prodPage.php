@@ -46,6 +46,8 @@
                 <Script>
                     var slider = document.getElementById("myRange");
                     var output = document.getElementById("productCount");
+                    
+                    
                     output.innerHTML = slider.value; // Display the default slider value
                 
                     // Update the current slider value (each time you drag the slider handle)
@@ -53,10 +55,11 @@
                         output.innerHTML = this.value;
                     } 
                 </Script>
-            
-                <a href="#" class="btn btn-info btn-lg">
+                <?php $quantity = "<script>document.writeln(document.getElementById('productCount').innerHTML);</script>";?>
+                <a href="Handlers/addToCartHandler.php?product_ID=<?php echo $_GET['product_ID']?>&quantity=8" class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-shopping-cart"></span> + cart
                 </a>
+                
             </div>
         </div>
     </body>
