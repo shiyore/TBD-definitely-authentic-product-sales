@@ -55,11 +55,34 @@ class orderDataService{
         disconnect();
     }
     
-    function addItem($id,$num){
+   function addItem($user_id,$id,$num){
         $database = new Database();
         $connection = $database->getConnected();
-        $users = [];
-        $sql = "INSERT ";
+        $order_id = 0;
+        
+        //getting the order id
+        $sql = "SELECT * FROM orders WHERE active = true AND user_ID = $user_id";
+        if ($result = $connection->query($sql)) {
+            $nbrRows = $result->num_rows;
+            //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+            if($result->num_rows === 0){
+                //echo "empty";
+                return null;
+            }
+            else{
+                //echo "<p>" . $result->num_rows . " users are registered.</p>";
+                $order_id = $result->fetch_assoc();
+                $order_id = $order_id['order_ID'];
+                //echo $order_id;
+            }
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+            return null;
+        }
+        //echo $order_id;
+        
+        $sql = "INSERT INTO order_info(`order_ID`,`product_ID`, `quantity`) VALUES ($order_id,$id,$num)";
         if ($result = $connection->query($sql)) {
             
         } else {
@@ -79,6 +102,7 @@ class orderDataService{
             echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
         }
     }
+    
 
     function getOrderID($id){
         $database = new Database();

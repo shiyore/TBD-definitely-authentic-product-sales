@@ -19,8 +19,7 @@ function displayOrder($order)
         foreach($order as $column){
             $tempTotal = $column[1] * $column[2];
             $total += $tempTotal;
-            echo var_dump($total);
-            echo var_dump($tempTotal);
+            
       ?>
           <tr>
             <th scope="row"><?php echo $column[0]; ?></th>
@@ -30,7 +29,7 @@ function displayOrder($order)
           </tr>
       <?php    
         //$total = $temptotal + $total;
-        echo $total;
+
         }
       ?>
             <tr>
