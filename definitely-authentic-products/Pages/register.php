@@ -40,7 +40,7 @@
 		?>
 	</div>
 
-	<<div class="container">
+	<div class="container">
 		<div class="row">
 			<form action="Handlers/registerhandler.php" method="POST">
 				<div class="col-sm-8">
@@ -55,7 +55,7 @@
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> I have read the <a
-							href="ToS.html">Terms of Service</a> and the <a	
+							href="ToS.html">Terms of Service</a> and the <a
 							href="PriPol.html">Privacy Policy</a></label>
 					</div> 
 					<?php
