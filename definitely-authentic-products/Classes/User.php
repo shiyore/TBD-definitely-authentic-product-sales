@@ -4,6 +4,7 @@ require_once "../Scripts/myFuncs.php";
 public class User
 {
     //$creditcard;
+    $id = 0;
     $email = '';
     $password = '';
     $roles[];

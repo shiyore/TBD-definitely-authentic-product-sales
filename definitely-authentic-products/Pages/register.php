@@ -40,7 +40,7 @@
 		?>
 	</div>
 
-	<<div class="container">
+	<div class="container">
 		<div class="row">
 			<form action="Handlers/registerhandler.php" method="POST">
 				<div class="col-sm-8">

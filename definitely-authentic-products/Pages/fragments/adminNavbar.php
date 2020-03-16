@@ -20,6 +20,7 @@
             <li><a href="/definitely-authentic-products/Pages/searchPage.php">Search</a></li>
           </ul>
         </li>
+        <li class="active"><a href="/definitely-authentic-products/Pages/kartPage.php">Kart</a></li>
         <li><a href="/definitely-authentic-products/Pages/usersPage.php">Users</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -19,7 +19,9 @@
             <li><a href="/definitely-authentic-products/Pages/products.php?category=3 ">Other...</a></li>
             <li><a href="/definitely-authentic-products/Pages/searchPage.php">Search</a></li>
           </ul>
+          
         </li>
+        <li class="active"><a href="/definitely-authentic-products/Pages/kartPage.php">Kart</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/definitely-authentic-products/Pages/register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
