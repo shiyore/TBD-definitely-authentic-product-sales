@@ -35,12 +35,12 @@
       ?>
     </div>
     <div class="col-sm-4 box_color">
-          <button type="button" class="btn btn-success">Delete Kart</button>
+          <a href="deleteOrder.php" class="btn btn-success" role="button">Cancel Order</a>
     </div>
     <div class="col-sm-4 box_color">
     </div>
     <div class="col-sm-4 box_color">
-          <button type="button" class="btn btn-danger">Checkout</button>
+          <a href="creditPage.php" class="btn btn-danger" role="button">Checkout</a>
     </div>
   </div>
 </div>
