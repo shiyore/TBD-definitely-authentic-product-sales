@@ -9,6 +9,8 @@ $a_ID = $_GET['add_ID'];
 $OBS->addAddress($a_ID, $oid);
 $OBS->checkout($oid);
 
+$OBS->newOrder(1);
+
 //echo $_GET['add_ID'];
 
 header("Location: ../../index.php");

@@ -1,8 +1,7 @@
 <?php
-echo "fucktion";
+
 function displayOrder($order)
 {
-    echo "fml";
 ?>
 <table class="table table-striped table-dark">
   <thead>
@@ -15,21 +14,23 @@ function displayOrder($order)
     </tr>
   </thead>
   <tbody>
-      <?php 
-      echo the gay;
-      $total = 0;
+      <?php
  
         foreach($order as $column){
             $tempTotal = $column[1] * $column[2];
+            $total += $tempTotal;
+            echo var_dump($total);
+            echo var_dump($tempTotal);
       ?>
           <tr>
             <th scope="row"><?php echo $column[0]; ?></th>
             <td><?php echo $column[1];?></td>
             <td><?php echo $column[2];?></td>
-            <td><?php echo $tempTotal;?></td>
+            <td>$<?php echo $tempTotal;?></td>
           </tr>
       <?php    
-        $total += $temptotal;
+        //$total = $temptotal + $total;
+        echo $total;
         }
       ?>
             <tr>

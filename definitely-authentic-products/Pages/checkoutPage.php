@@ -18,6 +18,8 @@
   //adding our search methods, in the future we hope to add these to a new class instead of the utility file
   require_once("../Scripts/utility.php");
   //includes for the table
+  /*ini_set('display_errors', true);
+  error_reporting(E_ALL);*/
   require ("fragments/_displayOrder.php");
   require_once ("../Classes/OrderBusinessService.php");
 
@@ -28,21 +30,14 @@
       <div class="container box_color">
       <div class="row">
       <?php
-      echo "php gayest";
         $businessService = new orderBusinessService();
-        echo "php gayer";
-        $order = $businessService->getOrderItems(1);
+        $order = $businessService->getOrders(1);
         //print_r($kart);
         displayOrder($order)
       ?>
     </div>
-    <div class="col-sm-4 box_color">
-          <a href="deleteOrder.php" class="btn btn-success" role="button">Cancel Order</a>
-    </div>
-    <div class="col-sm-4 box_color">
-    </div>
-    <div class="col-sm-4 box_color">
-          <a href="checkoutHandler.php?add_ID=<?php echo $_GET['add_ID']?>" class="btn btn-danger" role="button">Checkout</a>
+    <div class="col-sm-12 box_color">
+          <a href="Handlers/checkoutHandler.php?add_ID=<?php echo $_GET['add_ID']?>" class="btn btn-warning" role="button">Checkout</a>
     </div>
   </div>
 </div>
