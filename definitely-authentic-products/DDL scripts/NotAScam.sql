@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 08, 2020 at 01:59 AM
--- Server version: 5.6.34-log
--- PHP Version: 7.1.5
+-- Host: 127.0.0.1:3308
+-- Generation Time: Apr 03, 2020 at 11:35 PM
+-- Server version: 8.0.18
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,18 +25,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `addresses`
+--
+
+DROP TABLE IF EXISTS `addresses`;
+CREATE TABLE IF NOT EXISTS `addresses` (
+  `add_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `user_ID` int(11) NOT NULL,
+  `home` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`add_ID`),
+  KEY `user_ID` (`user_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`add_ID`, `user_ID`, `home`) VALUES
+(1, 1, '22834 star tree ln , los angeles CA 91390');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cardinfo`
 --
 
-CREATE TABLE `cardinfo` (
-  `card_ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cardinfo`;
+CREATE TABLE IF NOT EXISTS `cardinfo` (
+  `card_ID` int(11) NOT NULL AUTO_INCREMENT,
   `user_ID` int(11) NOT NULL,
-  `cardNumber` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `nameOnCard` varchar(75) CHARACTER SET utf8 NOT NULL,
+  `cardNumber` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nameOnCard` varchar(75) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cvc` int(3) NOT NULL,
-  `expiration` varchar(25) CHARACTER SET utf8 NOT NULL,
-  `address` varchar(75) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `expiration` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `address` varchar(75) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`card_ID`),
+  KEY `user_ID` (`user_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cardinfo`
@@ -51,13 +76,68 @@ INSERT INTO `cardinfo` (`card_ID`, `user_ID`, `cardNumber`, `nameOnCard`, `cvc`,
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `order_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `user_ID` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `add_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`order_ID`),
+  KEY `user_ID` (`user_ID`),
+  KEY `add_ID` (`add_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_ID`, `user_ID`, `active`, `add_ID`) VALUES
+(1, 1, 0, 1),
+(2, 1, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_history`
+--
+
+DROP TABLE IF EXISTS `order_history`;
+CREATE TABLE IF NOT EXISTS `order_history` (
   `order_ID` int(11) NOT NULL,
   `user_ID` int(11) NOT NULL,
+  `add_ID` int(11) NOT NULL,
+  `order_date` date NOT NULL,
+  KEY `order_ID` (`order_ID`),
+  KEY `user_ID` (`user_ID`),
+  KEY `add_ID` (`add_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_info`
+--
+
+DROP TABLE IF EXISTS `order_info`;
+CREATE TABLE IF NOT EXISTS `order_info` (
+  `order_ID` int(11) NOT NULL,
   `product_ID` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `total` int(11) NOT NULL
+  KEY `order_ID` (`order_ID`),
+  KEY `product_ID` (`product_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_info`
+--
+
+INSERT INTO `order_info` (`order_ID`, `product_ID`, `quantity`) VALUES
+(1, 2, 324),
+(1, 1, 14),
+(1, 15, 1184),
+(1, 17, 79),
+(1, 3, 8),
+(1, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -65,16 +145,18 @@ CREATE TABLE `orders` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `product_ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `product_ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `price` double(8,2) DEFAULT NULL,
   `short_desc` varchar(150) DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
   `category_ID` int(11) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
-  `desc_image` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `desc_image` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`product_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
@@ -109,78 +191,53 @@ INSERT INTO `products` (`product_ID`, `name`, `price`, `short_desc`, `image`, `c
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `user_ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(75) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `social` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='This is the users table, and is subject to change.  ';
+  `roles` int(2) DEFAULT NULL,
+  PRIMARY KEY (`user_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='This is the users table, and is subject to change.  ';
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_ID`, `email`, `username`, `password`, `social`) VALUES
-(1, 'email@email.com', 'username', 'password', ''),
-(2, 'gaylord@email.com', NULL, 'gaylord', ''),
-(3, 'carson@email.com', NULL, 'mojorino', '');
+INSERT INTO `users` (`user_ID`, `email`, `username`, `password`, `roles`) VALUES
+(1, 'email@email.com', 'username', 'password', 3);
 
 --
--- Indexes for dumped tables
+-- Constraints for dumped tables
 --
 
 --
--- Indexes for table `cardinfo`
+-- Constraints for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD CONSTRAINT `addresses_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`);
+
+--
+-- Constraints for table `cardinfo`
 --
 ALTER TABLE `cardinfo`
-  ADD PRIMARY KEY (`card_ID`),
-  ADD KEY `user_ID` (`user_ID`);
+  ADD CONSTRAINT `cardinfo_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`);
 
 --
--- Indexes for table `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_ID`),
-  ADD KEY `user_ID` (`user_ID`),
-  ADD KEY `product_ID` (`product_ID`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_ID`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`add_ID`) REFERENCES `addresses` (`add_ID`);
 
 --
--- Indexes for table `products`
+-- Constraints for table `order_info`
 --
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`product_ID`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cardinfo`
---
-ALTER TABLE `cardinfo`
-  MODIFY `card_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `order_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+ALTER TABLE `order_info`
+  ADD CONSTRAINT `order_info_ibfk_1` FOREIGN KEY (`order_ID`) REFERENCES `orders` (`order_ID`),
+  ADD CONSTRAINT `order_info_ibfk_2` FOREIGN KEY (`product_ID`) REFERENCES `products` (`product_ID`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
