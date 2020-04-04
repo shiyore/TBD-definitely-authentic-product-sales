@@ -48,5 +48,17 @@ class orderBusinessService{
         $service = new orderDataService();
         $service->removeItems($user_id);
     }
+
+    function commit($user_ID , $order_ID , $address_ID , $date)
+    {
+        $service = new orderDataService();
+        $service->commit($user_ID , $order_ID , $address_ID , $date);
+    }
+
+    function checkOrder($uid)
+    {
+        $service = new orderDataService();
+        $service->checkOrder($uid);
+    }
 }
 ?>

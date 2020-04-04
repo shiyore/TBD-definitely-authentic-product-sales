@@ -192,5 +192,49 @@ class orderDataService{
         }
         
     }
+
+//this is for committing to the order history table
+    function commit($user_ID, $order_ID , $address_ID , $date)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        
+        //the sql query
+        
+        $sql = "INSERT  INTO order_history (user_ID , order_ID , address_ID , date) VALUES('$user_ID' , '$order_ID , '$address_ID' , '$date')";
+        //turning off the autocommit
+        $connection->autocommit(FALSE);
+        
+        //inserting into the history table
+        $connection->query($sql);
+        
+        //committing
+        if(!$connection->commit()){
+            echo "Commit failed";
+            exit();
+        }
+        
+        $connection -> close();
+    }
+//create a new order if there is none
+    function checkOrder($uid)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+
+        $sql = "SELECT * FROM orders WHERE user_ID = $uid AND active = 1"
+
+        if ($result = connection->query($sql))
+        {
+            $nbrRows = $result->num_rows;
+
+            if ($nbrRows === 0)
+            {
+                //create new order
+                $insrt = "INSERT INTO orders (order_ID, user_ID, active, add_ID) VALUES(NULL, '$uid', 1, NULL)";
+                $connection->query(insrt);
+            }
+        }
+    }
 }
 ?>
