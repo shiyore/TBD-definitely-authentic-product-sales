@@ -18,7 +18,8 @@ class Database{
         //echo "connected";
         return $this->dbconnect;
     }
-    function disconnect($connect){
+    function disconnect($connect)
+    {
         $connect->close;
     }
 }

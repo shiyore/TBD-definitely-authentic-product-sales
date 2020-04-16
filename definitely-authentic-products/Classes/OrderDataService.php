@@ -224,7 +224,7 @@ class orderDataService{
 
         $sql = "SELECT * FROM orders WHERE user_ID = $uid AND active = 1"
 
-        if ($result = connection->query($sql))
+        if ($result = $connection->query($sql))
         {
             $nbrRows = $result->num_rows;
 
@@ -233,6 +233,49 @@ class orderDataService{
                 //create new order
                 $insrt = "INSERT INTO orders (order_ID, user_ID, active, add_ID) VALUES(NULL, '$uid', 1, NULL)";
                 $connection->query(insrt);
+            }
+        }
+    }
+//get orders between two dates
+    function getOrder($date1, $date2)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        //sql to get all order_id's between the two dates
+        $orderSQL = "SELECT order_ID FROM order_history WHERE order_date BETWEEN '$date1' AND '$date2'";
+        if ($result = $connection->query($orderSQL))
+        {
+            $nbrRows = $result->num_rows;
+            $count = 0;
+            if ($nbrRows > 0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                    //add the orderid's to the orderID array
+                    $oidArr[$count] = $row["order_ID"];
+                    $count++;
+                }
+            }
+        }
+    }
+    function getPrice($oid)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        //Select the quantity and price of products in the order
+        $sql = "SELECT products.price, order_info.quantity FROM order_info INNER JOIN products ON order_info.product_ID = products.product_ID WHERE order_info.order_ID = '$oid'";
+        $total = 0;
+        if ($result = $connection->query($sql))
+        {
+            $nbrRows = $result->num_rows;
+
+            if ($nbrRows > 0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                    //calculate the total of each product and their quantity, and add that to the total
+                    $total += $row["quantity"] * $row["price"];
+                }
             }
         }
     }
