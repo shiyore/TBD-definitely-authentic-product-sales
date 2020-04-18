@@ -1,8 +1,10 @@
 <?php
-
-function displayOrder($order)
+echo "gayboi";
+require_once ("../../Classes/OrderBusinessService.php");
+function displayOrder($orders)
 {
 ?>
+<h1>Hello gayboi!</h1>
 <table class="table table-striped table-dark">
   <thead>
     <tr>
@@ -15,20 +17,28 @@ function displayOrder($order)
   </thead>
   <tbody>
       <?php
+        $service = new orderBusinessService();
+        echo "fag";
+        $index = 0;
+        foreach($orders as $id)
+        {
+          $orderItems[$index] = service->getPrice($id);
+          $orderDate[$index] = service->getDate($id);
+          $index++;
+        }
  
-        foreach($order as $column){
-            $tempTotal = $column[1] * $column[2];
-            $total += $tempTotal;
+        foreach($orderItems as $column){
+            $total += $column[3];
             
       ?>
           <tr>
             <th scope="row"><?php echo $column[0]; ?></th>
             <td><?php echo $column[1];?></td>
             <td><?php echo $column[2];?></td>
-            <td>$<?php echo $tempTotal;?></td>
+            <td>$<?php echo $column[3];?></td>
           </tr>
       <?php    
-        //$total = $temptotal + $total;
+        $total = $temptotal + $total;
 
         }
       ?>

@@ -8,29 +8,37 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script>
+<!--<script>
     function generateMonth()
     {
-        var x=document.getElementById("randomMonth");
-        x.innerHTML=Math.floor((Math.random()*12)+1);
+        var m=document.getElementById("randomMonth");
+        m.innerHTML=Math.floor((Math.random()*12)+1);
+        $('$mon_val').val(m);
     }
 </script>
 <script>
     function generateDay()
     {
-        var x=document.getElementById("randomDay");
-        x.innerHTML=Math.floor((Math.random()*31)+1);
+        var d=document.getElementById("randomDay");
+        d.innerHTML=Math.floor((Math.random()*31)+1);
+        $('#day_val').val(d);
     }
 </script>
 <script>
     function generateYear()
     {
-        var x=document.getElementById("randomYear");
-        var y = Math.floor((Math.random()*20));
-        if (y < 10) 
-        x.innerHTML= "200" + y;
+        var y=document.getElementById("randomYear");
+        var x = Math.floor((Math.random()*21));
+        if (x < 10)
+        {
+            y.innerHTML= "200" + x;
+            $('year_val').val(2000 + x);
+        }
         else
-        x.innerHTML= "20" + y;
+        {
+            y.innerHTML= "20" + x;
+            $('year_val').val(2000 + x);
+        }
     }
 </script>
 <style>
@@ -46,7 +54,7 @@
         display: inline;
         margin-left: 30px;
     }
-</style>
+</style>-->
 <meta charset="ISO-8859-1">
 <title>Orders!</title>
 </head>
@@ -63,7 +71,7 @@
       echo "ID:" . $_SESSION["ID"];
 ?>
 	<h1 style="color: #ee5500;">Please enter the date</h1><br>
-    <div class="inline">
+    <!--<div class="inline">
     <ul>
     <li class="inline">
         <h2>Month: </h2>
@@ -84,10 +92,14 @@
         <h2>Until</h2>
     </li>
     <li class="next">
-        <h1><?php echo date("m/d/Y");?><h1>
+        <h1><?php //echo date("m/d/Y");?><h1>
     </li>
     </ul>
-    </div>
+    </div>-->
+    <form method="POST" action="Handlers/viewOrderHandler.php">
+    <input type="text" style="margin-left: 50px" name="date" value="month/day/year; 09/03/2019"/><br/>
+    <input type="submit" style="margin-left: 50px" name="submit">Search!</input>
+    </form>
 
 
 

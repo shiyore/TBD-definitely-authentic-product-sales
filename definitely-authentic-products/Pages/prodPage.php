@@ -43,23 +43,34 @@
                 <div class="slidecontainer">
                   <input type="range" min="1" max="5000" value="3666" class="slider" id="myRange">
                 </div>
-                <Script>
-                    var slider = document.getElementById("myRange");
-                    var output = document.getElementById("productCount");
-                    
-                    
-                    output.innerHTML = slider.value; // Display the default slider value
                 
-                    // Update the current slider value (each time you drag the slider handle)
-                    slider.oninput = function() {
-                        output.innerHTML = this.value;
-                    } 
-                </Script>
-                <?php $quantity = "<script>document.writeln(document.getElementById('productCount').innerHTML);</script>";?>
+                
+                <form method="POST" action="Handlers/addToCartHandler.php?product_ID=<?php echo $_GET['product_ID']?>">
+                    <input type="hidden" name="quantity" id="quantity">
+                    <br/>
+                    <input class="btn btn-primary" type="submit" value="+ Cart">
+                </form>
+                
                 <a href="Handlers/addToCartHandler.php?product_ID=<?php echo $_GET['product_ID']?>&quantity=8" class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-shopping-cart"></span> + cart
                 </a>
                 
+                <Script>
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("productCount");
+                    var textField = document.getElementById("quantity");
+                    
+                    
+                    output.innerHTML = slider.value; 
+                    textField.innerHTML = slider.value;// Display the default slider value
+                
+                    // Update the current slider value (each time you drag the slider handle)
+                    slider.oninput = function() {
+                        output.innerHTML = this.value;
+                        textField.innerHTML = this.value;
+                        textField.value = this.value;
+                    } 
+                </Script>
             </div>
         </div>
     </body>

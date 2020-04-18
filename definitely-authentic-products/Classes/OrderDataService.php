@@ -263,8 +263,32 @@ class orderDataService{
         $database = new Database();
         $connection = $database->getConnected();
         //Select the quantity and price of products in the order
-        $sql = "SELECT products.price, order_info.quantity FROM order_info INNER JOIN products ON order_info.product_ID = products.product_ID WHERE order_info.order_ID = '$oid'";
+        $sql = "SELECT products.name, products.price, order_info.quantity FROM order_info INNER JOIN products ON order_info.product_ID = products.product_ID WHERE order_info.order_ID = '$oid'";
         $total = 0;
+        if ($result = $connection->query($sql))
+        {
+            $nbrRows = $result->num_rows;
+
+            if ($nbrRows > 0)
+            {
+                $index = 0;
+                while($row = $result->fetch_assoc())
+                {
+                    //calculate the total of each product and their quantity, and add that to the total
+                    $prodTotal = $row['quantity'] * $row['price'];
+                    $prod_info[$index] = array($row['name'] , $row ['quantity'] , $row['price'], $prodTotal);
+                    ++$index;
+                }
+                return $prod_info;
+            }
+        }
+    }
+    function getDate($oid)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        //Select the quantity and price of products in the order
+        $sql = "SELECT order_date FROM order_history WHERE order_ID = '$oid'";
         if ($result = $connection->query($sql))
         {
             $nbrRows = $result->num_rows;
@@ -274,7 +298,7 @@ class orderDataService{
                 while($row = $result->fetch_assoc())
                 {
                     //calculate the total of each product and their quantity, and add that to the total
-                    $total += $row["quantity"] * $row["price"];
+                    return row['order_date'];
                 }
             }
         }

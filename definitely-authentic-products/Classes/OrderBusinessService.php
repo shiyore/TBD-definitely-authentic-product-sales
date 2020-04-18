@@ -60,5 +60,23 @@ class orderBusinessService{
         $service = new orderDataService();
         $service->checkOrder($uid);
     }
+
+    function getOrder($d1, $d2)
+    {
+        $service = new orderDataService();
+        $service->getOrder($d1, $d2);
+    }
+
+    function getPrice($oid)
+    {
+        $service = new orderDataService();
+        $service->getPrice($oid);
+    }
+
+    function getDate($oid)
+    {
+        $service = new orderDataService();
+        $service->getDate($oid);
+    }
 }
 ?>
