@@ -1,7 +1,7 @@
 <?php
 require_once("order.php");
 class orderHistory implements JsonSerializable{
-    public $orders = array();
+    private $orders = array();
     
     public function __construct(){
         $orders = array();
@@ -13,7 +13,10 @@ class orderHistory implements JsonSerializable{
     }
     
     public function addOrder($order){
-        array_push($orders,$order);
+        array_push($this->orders,$order);
+    }
+    public function getOrders(){
+        return $this->orders;
     }
 }
 
