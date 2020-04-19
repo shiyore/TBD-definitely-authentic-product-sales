@@ -1,10 +1,8 @@
 <?php
-echo "gayboi";
-require_once ("../../Classes/OrderBusinessService.php");
+require_once("../Classes/OrderBusinessService.php");
 function displayOrder($orders)
 {
 ?>
-<h1>Hello gayboi!</h1>
 <table class="table table-striped table-dark">
   <thead>
     <tr>
@@ -18,12 +16,12 @@ function displayOrder($orders)
   <tbody>
       <?php
         $service = new orderBusinessService();
-        echo "fag";
         $index = 0;
-        foreach($orders as $id)
-        {
-          $orderItems[$index] = service->getPrice($id);
-          $orderDate[$index] = service->getDate($id);
+        $total = 0;
+        $temptotal = 0;
+        foreach($orders as $id){
+          $orderItems[$index] = $service->getPrice($id);
+          $orderDate[$index] = $service->getDate($id);
           $index++;
         }
  

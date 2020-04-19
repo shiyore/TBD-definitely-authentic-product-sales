@@ -36,6 +36,7 @@ class orderDataService{
         $sql = "SELECT products.name, order_info.quantity,products.price FROM order_info INNER JOIN products ON order_info.product_ID=products.product_ID WHERE order_info.order_ID = $order_id";
         if ($result = $connection->query($sql)) {
             $nbrRows = $result->num_rows;
+            $index = 0;
             //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
             if($result->num_rows === 0)
                 return null;
@@ -222,14 +223,12 @@ class orderDataService{
         $database = new Database();
         $connection = $database->getConnected();
 
-        $sql = "SELECT * FROM orders WHERE user_ID = $uid AND active = 1"
+        $sql = "SELECT * FROM orders WHERE user_ID = $uid AND active = 1";
 
-        if ($result = $connection->query($sql))
-        {
+        if ($result = $connection->query($sql)){
             $nbrRows = $result->num_rows;
 
-            if ($nbrRows === 0)
-            {
+            if ($nbrRows === 0){
                 //create new order
                 $insrt = "INSERT INTO orders (order_ID, user_ID, active, add_ID) VALUES(NULL, '$uid', 1, NULL)";
                 $connection->query(insrt);
@@ -263,7 +262,7 @@ class orderDataService{
         $database = new Database();
         $connection = $database->getConnected();
         //Select the quantity and price of products in the order
-        $sql = "SELECT products.name, products.price, order_info.quantity FROM order_info INNER JOIN products ON order_info.product_ID = products.product_ID WHERE order_info.order_ID = '$oid'";
+        $sql = "SELECT products.name, products.price, order_info.quantity FROM order_info INNER JOIN products ON order_info.product_ID = products.product_ID WHERE order_info.order_ID = '$oid[0]'";
         $total = 0;
         if ($result = $connection->query($sql))
         {
@@ -288,7 +287,7 @@ class orderDataService{
         $database = new Database();
         $connection = $database->getConnected();
         //Select the quantity and price of products in the order
-        $sql = "SELECT order_date FROM order_history WHERE order_ID = '$oid'";
+        $sql = "SELECT order_date FROM order_history WHERE order_ID = '$oid[0]'";
         if ($result = $connection->query($sql))
         {
             $nbrRows = $result->num_rows;
@@ -302,6 +301,14 @@ class orderDataService{
                 }
             }
         }
+    }
+    
+    //this is for api data acquisition
+    function getapi($date1,$date2){
+        $db = new Database();
+        $connection = $db->getConnected();
+        
+        $sql = "SELECT";
     }
 }
 ?>

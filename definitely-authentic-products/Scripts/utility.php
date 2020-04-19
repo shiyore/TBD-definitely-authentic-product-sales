@@ -4,7 +4,7 @@ require_once ('myFuncs.php');
 require_once("../Classes/Database.php");
 
 // global login variables for mysql
-define('EMPTY_STRING', "");
+//define('EMPTY_STRING', "");
 $DBName = "milestone1";
 $tableName = "users";
 $message = "";

@@ -4,7 +4,7 @@ require ("OrderDataService.php");
 ?>
 <?php
 class orderBusinessService{
-
+    
     function __construct(){
         //echo "new business service<br>";
     }
@@ -77,6 +77,12 @@ class orderBusinessService{
     {
         $service = new orderDataService();
         $service->getDate($oid);
+    }
+    
+    //this is for getting the api information - Aiden
+    function apiData($date1,$date2){
+        $service = new orderDataService();
+        return $service->getapi($date1,$date2);
     }
 }
 ?>
