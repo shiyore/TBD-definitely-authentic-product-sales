@@ -24,6 +24,9 @@ class order implements JsonSerializable{
     public function getProducts(){
         return $this->products;
     }
+    public function getDate(){
+        return $this->date;
+    }
     
 }
 

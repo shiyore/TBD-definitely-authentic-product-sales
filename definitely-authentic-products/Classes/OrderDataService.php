@@ -307,8 +307,32 @@ class orderDataService{
     function getapi($date1,$date2){
         $db = new Database();
         $connection = $db->getConnected();
+        $index = 0;
         
-        $sql = "SELECT";
+        //this retrieves all the order items between the two given dates and joins a couple table items together.
+        $sql = "SELECT products.name, order_info.quantity, products.price, order_history.order_date FROM order_history INNER JOIN order_info ON order_history.order_ID = order_info.order_ID INNER JOIN products ON order_info.product_ID=products.product_ID WHERE order_history.user_ID = 1 AND order_history.order_date BETWEEN '$date1' AND '$date2' ORDER BY order_history.order_date DESC";
+        
+        if ($result = $connection->query($sql)) {
+            $nbrRows = $result->num_rows;
+            //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+            if($result->num_rows === 0){
+                //$db->disconnect();
+                return null;
+            }
+            else{
+                //echo "<p>" . $result->num_rows . " users are registered.</p>";
+                while($row = $result->fetch_assoc()){
+                    $orderItems[$index] = array($row['name'] , $row ['quantity'] , $row['price'], $row['order_date']);
+                    $index++;
+                }
+                //$db->disconnect();
+                return $orderItems;
+            }
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+            return null;
+        }
     }
 }
 ?>
