@@ -18,34 +18,32 @@
   //adding our search methods, in the future we hope to add these to a new class instead of the utility file
   require_once("../Scripts/utility.php");
   //includes for the table
-  echo "Hello!";
+  //echo "Hello!";
   require_once ("fragments/_displayOrder.php");
-  echo "Goodbye";
+  //echo "Goodbye";
   require_once ("../Classes/OrderBusinessService.php");
 
 ?>
 
 <div class="container">
-    <h3>KART!</h3>
+    <h3>Orders:</h3>
       <div class="container box_color">
       <div class="row">
       <?php
-        echo "<h1>Hello!</h1>";
         $date1 = $_GET['sqlDate'];
         $date2 = $_GET['cDate'];
-        $businessService = new orderBusinessService();
-        $orders = $businessService->getOrder($date1, $date2);
+        //$businessService = new orderBusinessService();
+        //$orders = $businessService->getOrder($date1, $date2);
         //print_r($kart);
-        displayOrder(orders)
+        displayOrder($date1, $date2);
       ?>
     </div>
     <div class="col-sm-4 box_color">
-          <a href="Handlers/cancelAll.php" class="btn btn-success" role="button">Cancel Order</a>
     </div>
     <div class="col-sm-4 box_color">
+    <a href="ordersPage.php" class="btn btn-success" role="button">Back</a>
     </div>
     <div class="col-sm-4 box_color">
-          <a href="creditPage.php" class="btn btn-danger" role="button">Checkout</a>
     </div>
   </div>
 </div>

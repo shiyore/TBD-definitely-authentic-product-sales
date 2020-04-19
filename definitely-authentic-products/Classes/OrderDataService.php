@@ -254,6 +254,7 @@ class orderDataService{
                     $oidArr[$count] = $row["order_ID"];
                     $count++;
                 }
+                return $oidArr;
             }
         }
     }
@@ -302,7 +303,33 @@ class orderDataService{
             }
         }
     }
-    
+    function getOrderInfo($date1, $date2)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        //Select the quantity and price of products in the order
+        $sql = "SELECT order_info.order_ID, products.name, order_info.quantity, products.price, order_history.order_date FROM order_history INNER JOIN order_info ON 
+            order_history.order_ID = order_info.order_ID INNER JOIN products ON order_info.product_ID=products.product_ID WHERE order_history.user_ID = 1 AND 
+            order_history.order_date BETWEEN '$date1' AND '$date2' ORDER BY order_history.order_date DESC";
+        $total = 0;
+        if ($result = $connection->query($sql))
+        {
+            $nbrRows = $result->num_rows;
+
+            if ($nbrRows > 0)
+            {
+                $index = 0;
+                while($row = $result->fetch_assoc())
+                {
+                    //calculate the total of each product and their quantity, and add that to the total
+                    $prodTotal = $row['quantity'] * $row['price'];
+                    $prod_info[$index] = array($row['order_ID'], $row['name'] , $row ['quantity'] , $row['price'], $prodTotal, $row['order_date']);
+                    ++$index;
+                }
+                return $prod_info;
+            }
+        }
+    }
     //this is for api data acquisition
     function getapi($date1,$date2){
         $db = new Database();

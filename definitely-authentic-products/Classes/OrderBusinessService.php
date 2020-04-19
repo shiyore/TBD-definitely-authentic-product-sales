@@ -64,19 +64,25 @@ class orderBusinessService{
     function getOrder($d1, $d2)
     {
         $service = new orderDataService();
-        $service->getOrder($d1, $d2);
+        return $service->getOrder($d1, $d2);
     }
 
     function getPrice($oid)
     {
         $service = new orderDataService();
-        $service->getPrice($oid);
+        return $service->getPrice($oid);
     }
 
     function getDate($oid)
     {
         $service = new orderDataService();
-        $service->getDate($oid);
+        return $service->getDate($oid);
+    }
+
+    function getOrderInfo($date1, $date2)
+    {
+        $service = new orderDataService();
+        return $service->getOrderInfo($date1, $date2);
     }
     
     //this is for getting the api information - Aiden

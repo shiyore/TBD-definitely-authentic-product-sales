@@ -101,7 +101,5 @@
     <input type="submit" style="margin-left: 50px" name="submit">Search!</input>
     </form>
 
-
-
 </body>
 </html>
