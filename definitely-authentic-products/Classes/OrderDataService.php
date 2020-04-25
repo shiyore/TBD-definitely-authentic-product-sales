@@ -350,7 +350,7 @@ class orderDataService{
             }
             else
             {
-                return null;
+                return 0;
             }
         }
     }

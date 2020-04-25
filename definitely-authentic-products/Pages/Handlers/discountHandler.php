@@ -7,12 +7,6 @@ require_once("../../Classes/OrderBusinessService.php");
 $service = new OrderBusinessService();
 $code = $_POST['dCode'];
 $discount = $service->getDiscount($code);
-if ($code)
-{
-    header("Location: ../checkoutPage.php?add_ID=$_GET['add_ID']&disc=$discount");
-}
-else
-{
-    header("Location: ../discountFail.php?add_ID=$_GET['add_ID']");
-}
+echo $discount;
+header("Location: /definitely-authentic-products/Pages/checkoutPage.php?add_ID=$_GET['add_ID']&disc=$discount");
 ?>
