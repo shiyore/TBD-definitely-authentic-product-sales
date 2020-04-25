@@ -24,7 +24,7 @@ if(isset($_GET["start"])){
     $start = $_GET["start"];
 }
 if(isset($_GET["end"])){
-    $start = $_GET["end"];
+    $end = $_GET["end"];
 }
 
 

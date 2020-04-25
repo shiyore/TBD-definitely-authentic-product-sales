@@ -330,6 +330,30 @@ class orderDataService{
             }
         }
     }
+    function getDiscount($code)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        $sql = "SELECT amount FROM discounts WHERE code = $code";
+
+        if ($result = $connection->query($sql))
+        {
+            $nbrRows = $result->num_rows;
+
+            if ($nbrRows > 0)
+            {
+                $row = $result->fetch_assoc();
+                $disc = $row['amount'];
+                $delete = "DELETE FROM discounts WHERE code = $code";
+                $connection->query($delete);
+                return $disc;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
     //this is for api data acquisition
     function getapi($date1,$date2){
         $db = new Database();

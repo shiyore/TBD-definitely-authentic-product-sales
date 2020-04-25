@@ -84,6 +84,12 @@ class orderBusinessService{
         $service = new orderDataService();
         return $service->getOrderInfo($date1, $date2);
     }
+
+    function getDiscount($code)
+    {
+        $service = new orderDataService();
+        return $service->getDiscount($code);
+    }
     
     //this is for getting the api information - Aiden
     function apiData($date1,$date2){

@@ -1,17 +1,18 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once("../Classes/OrderBusinessService.php");
-function displayOrder($d1, $d2)
+function displayOrder($orders)
 {
 ?>
 <table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th scope="col">Order Number</th>
       <th scope="col">Product</th>
       <th scope="col">Quantity</th>
       <th scope="col">Price of Product</th>
       <th scope="col">Total</th>
-      <th scope="col">Date</th>
   
     </tr>
   </thead>
@@ -19,29 +20,35 @@ function displayOrder($d1, $d2)
       <?php
         $service = new orderBusinessService();
         $index = 0;
-        //$orderItems = $service->getPrice($id);
-        //$orderDate = $service->getDate($id);
-        //$index++;
-        $orderInfo = $service->getOrderInfo($d1, $d2);
-          
-          //for each order info that we get, it creates another row. Essentially showing each item bough, how many of that item, what order that is a part of, when that order happened,
-          //and the total of that product
-          foreach ($orderInfo as $o)
-          {
+        $total = 0;
+        $temptotal = 0;
+        foreach($orders as $o)
+        {
+          $temptotal = $o[1] * $o[2];
+          $order[$index] = array($o[0], $o[1], $o[2], $temptotal);
+          $total += $temptotal;
+          $index++;
+        }
+ 
+        foreach($order as $column)
+        {
+            
       ?>
           <tr>
-            <th scope="row"><?php echo $o[0]; ?></th>
-            <td><?php echo $o[1];?></td>
-            <td><?php echo $o[2];?></td>
-            <td>$<?php echo $o[3];?></td>
-            <td>$<?php echo $o[4];?></td>
-            <td><?php echo $o[5];?></td>
+            <th scope="row"><?php echo $column[0]; ?></th>
+            <td><?php echo $column[1];?></td>
+            <td><?php echo $column[2];?></td>
+            <td>$<?php echo $column[3];?></td>
           </tr>
-      <?php    
-            $total = $temptotal + $total;
-            $index++;
-          }
+      <?php
+        }
       ?>
+            <tr>
+            <th></th>
+            <td></td>
+            <td></td>
+            <td><?php echo "$$total";?></td>
+            </tr>
   </tbody>
 </table>
 <?php

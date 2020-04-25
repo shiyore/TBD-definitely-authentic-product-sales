@@ -11,9 +11,9 @@
 <body>
 
 <?php
-  ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
   //start sessions
   include("fragments/header.php");
   //including our navbar
@@ -35,12 +35,27 @@ error_reporting(E_ALL);
       <?php
         $businessService = new orderBusinessService();
         $order = $businessService->getOrders(1);
-        //print_r($kart);
-        displayOrder($order)
+        //$orderstr = $order[0][2];
+        /*foreach($order as $o)
+        {
+          echo "<h1>Name: $o[0]</h1><br/>";
+          echo "<h1>Name: $o[1]</h1><br/>";
+          echo "<h1>Name: $o[2]</h1><br/>";
+        }*/
+        displayOrder($order);
       ?>
     </div>
-    <div class="col-sm-12 box_color">
-          <a href="Handlers/checkoutHandler.php?add_ID=<?php echo $_GET['add_ID']?>" class="btn btn-warning" role="button">Checkout</a>
+    <div class="col-sm-6 box_color">
+    <form action="Handlers/discountHandler.php?add_ID=<?php echo $_GET['add_ID'];?>" method="POST">
+      <div class="form-group">
+        <label for="dCode">Discount Code:</label>
+        <input type="text" class="form-control" name="dCode" id="dCode">
+      </div>
+      <button name="submitButton" type="submit" class="btn btn-info" value="Submit">Apply</button>
+    </form>
+    </div>
+    <div class="col-sm-6 box_color">
+          <a href="Handlers/checkoutHandler.php?add_ID=<?php echo $_GET['add_ID'];?>" class="btn btn-warning" role="button" style="margin-top: 25px; margin-left: 30px;">Checkout</a>
     </div>
   </div>
 </div>

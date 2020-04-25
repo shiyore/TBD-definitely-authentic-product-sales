@@ -51,10 +51,6 @@
                     <input class="btn btn-primary" type="submit" value="+ Cart">
                 </form>
                 
-                <a href="Handlers/addToCartHandler.php?product_ID=<?php echo $_GET['product_ID']?>&quantity=8" class="btn btn-info btn-lg">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> + cart
-                </a>
-                
                 <Script>
                     var slider = document.getElementById("myRange");
                     var output = document.getElementById("productCount");

@@ -19,9 +19,8 @@
   require_once("../Scripts/utility.php");
   //includes for the table
   //echo "Hello!";
-  require_once ("fragments/_displayOrder.php");
+  require_once ("fragments/_displayOrderHistory.php");
   //echo "Goodbye";
-  require_once ("../Classes/OrderBusinessService.php");
 
 ?>
 
@@ -32,6 +31,7 @@
       <?php
         $date1 = $_GET['sqlDate'];
         $date2 = $_GET['cDate'];
+
         //$businessService = new orderBusinessService();
         //$orders = $businessService->getOrder($date1, $date2);
         //print_r($kart);
@@ -39,11 +39,12 @@
       ?>
     </div>
     <div class="col-sm-4 box_color">
-    </div>
-    <div class="col-sm-4 box_color">
     <a href="ordersPage.php" class="btn btn-success" role="button">Back</a>
     </div>
     <div class="col-sm-4 box_color">
+    </div>
+    <div class="col-sm-4 box_color">
+    <a href="../api/getOrders.php?start=<?php echo $date1;?>" class="btn btn-success" role="button">Get all as Json</a>
     </div>
   </div>
 </div>
