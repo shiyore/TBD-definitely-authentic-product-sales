@@ -78,7 +78,7 @@ function displayOrder($orders)
             <td><?php 
                   if($isPrime)
                     echo "Prime ";
-                  echo "Shipping: \$$checkoutInfo[0] <br/>Tax: $$checkoutInfo[1] <br/>Total: $$checkoutInfo[2]";
+                  echo "Shipping: \$$checkoutInfo[0] <br/>Tax: $$checkoutInfo[1] <br/>Total: $$total";
               
               ?></td>
             </tr>

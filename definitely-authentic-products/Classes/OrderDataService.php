@@ -195,29 +195,22 @@ class orderDataService{
     }
 
 //this is for committing to the order history table
-    function commit($user_ID, $order_ID , $address_ID , $date, $total)
+    function commit($user_ID, $order_ID , $address_ID , $date)
     {
         $database = new Database();
         $connection = $database->getConnected();
         
         //the sql query
-        
-        $sql = "INSERT INTO order_history (user_ID , order_ID , address_ID , date) VALUES('$user_ID' , '$order_ID , '$address_ID' , '$date')";
+        $sql = "INSERT INTO order_history (user_ID , order_ID , add_ID , order_date) VALUES($user_ID, $order_ID, $address_ID, '$date')";
         //turning off the autocommit
-        //$connection->autocommit(FALSE);
+        $connection->autocommit(FALSE);
         
         //inserting into the history table
-        $connection->query($sql);
-        
         //committing
-        /*if(!$connection->commit()){
+        if(!$connection->commit()){
             echo "Commit failed";
             exit();
         }
-        else
-        {
-            $connection->commit();
-        }*/
         $connection->close();
     }
 //create a new order if there is none

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 26, 2020 at 07:19 AM
--- Server version: 5.7.26
--- PHP Version: 7.3.7
+-- Generation Time: Apr 26, 2020 at 10:13 PM
+-- Server version: 5.6.34-log
+-- PHP Version: 7.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `NotAScam`
+-- Database: `notascam`
 --
 
 -- --------------------------------------------------------
@@ -60,7 +62,27 @@ CREATE TABLE `cardinfo` (
 --
 
 INSERT INTO `cardinfo` (`card_ID`, `user_ID`, `cardNumber`, `nameOnCard`, `cvc`, `expiration`, `address`) VALUES
-(1, 1, '4888606201730507', 'FurFag Uwudle', 627, '3/23', '36 South Baker Ave.\r\nBarberton, OH 44203');
+(1, 1, '4888606201730507', 'Aiden Boshiyoka', 627, '3/23', '36 South Baker Ave.\r\nBarberton, OH 44203');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discounts`
+--
+
+CREATE TABLE `discounts` (
+  `discount_ID` int(11) NOT NULL,
+  `code` int(11) NOT NULL,
+  `amount` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `discounts`
+--
+
+INSERT INTO `discounts` (`discount_ID`, `code`, `amount`) VALUES
+(1, 1337, 120),
+(2, 1234, 800);
 
 -- --------------------------------------------------------
 
@@ -82,7 +104,17 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_ID`, `user_ID`, `active`, `add_ID`) VALUES
 (1, 1, 0, 1),
 (2, 1, 0, 1),
-(3, 1, 1, 1);
+(3, 1, 0, 1),
+(4, 1, 0, 1),
+(5, 1, 0, 1),
+(6, 1, 0, 1),
+(7, 1, 0, 1),
+(8, 1, 0, 1),
+(9, 1, 0, 1),
+(10, 1, 0, 1),
+(11, 1, 0, 1),
+(12, 1, 0, 1),
+(13, 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -103,7 +135,9 @@ CREATE TABLE `order_history` (
 
 INSERT INTO `order_history` (`order_ID`, `user_ID`, `add_ID`, `order_date`) VALUES
 (1, 1, 1, '2020-04-15'),
-(2, 1, 1, '2019-03-12');
+(2, 1, 1, '2019-03-12'),
+(3, 1, 1, '2020-04-26'),
+(12, 1, 1, '2020-04-26');
 
 -- --------------------------------------------------------
 
@@ -132,7 +166,13 @@ INSERT INTO `order_info` (`order_ID`, `product_ID`, `quantity`) VALUES
 (2, 1, 58),
 (2, 6, 14),
 (3, 1, 125),
-(3, 1, 175);
+(3, 1, 175),
+(4, 2, 64),
+(4, 16, 1),
+(8, 5, 38),
+(11, 7, 20),
+(12, 1, 12),
+(13, 19, 16);
 
 -- --------------------------------------------------------
 
@@ -220,6 +260,12 @@ ALTER TABLE `cardinfo`
   ADD KEY `user_ID` (`user_ID`);
 
 --
+-- Indexes for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD PRIMARY KEY (`discount_ID`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -263,31 +309,31 @@ ALTER TABLE `users`
 --
 ALTER TABLE `addresses`
   MODIFY `add_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `cardinfo`
 --
 ALTER TABLE `cardinfo`
   MODIFY `card_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+--
+-- AUTO_INCREMENT for table `discounts`
+--
+ALTER TABLE `discounts`
+  MODIFY `discount_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- Constraints for dumped tables
 --
@@ -317,6 +363,7 @@ ALTER TABLE `orders`
 ALTER TABLE `order_info`
   ADD CONSTRAINT `order_info_ibfk_1` FOREIGN KEY (`order_ID`) REFERENCES `orders` (`order_ID`),
   ADD CONSTRAINT `order_info_ibfk_2` FOREIGN KEY (`product_ID`) REFERENCES `products` (`product_ID`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

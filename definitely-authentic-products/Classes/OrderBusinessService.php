@@ -52,7 +52,7 @@ class orderBusinessService{
     function commit($user_ID , $order_ID , $address_ID , $date)
     {
         $service = new orderDataService();
-        $service->commit($user_ID , $order_ID , $address_ID , $date, $total);
+        $service->commit($user_ID , $order_ID , $address_ID , $date);
     }
 
     function checkOrder($uid)

@@ -22,25 +22,6 @@ function getProducts($products){
             </a>
             </p>
             <p><?php echo $product[3]; ?></p>
-            <p>Amount you buy: <span id="productCount<?php echo $id; ?>"></span></p>
-            <div class="slidecontainer">
-                  <input type="range" min="1" max="800" value="50" class="slider" id="myRange<?php echo $id;?>">
-            </div>
-            <Script>
-              var slider = document.getElementById("myRange<?php echo $id;?>");
-              var output = document.getElementById("productCount<?php echo $id;?>");
-              output.innerHTML = slider.value; // Display the default slider value
-                
-              // Update the current slider value (each time you drag the slider handle)
-              slider.oninput = function() {
-                  output.innerHTML = this.value;
-              } 
-            </Script>
-            
-            <div align="center" class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
-              <label class="custom-control-label" for="defaultChecked2"></label>
-            </div>
           </div>
         </div>
   
