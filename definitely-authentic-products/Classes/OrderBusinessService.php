@@ -96,5 +96,42 @@ class orderBusinessService{
         $service = new orderDataService();
         return $service->getapi($date1,$date2);
     }
+    
+    //gets the total with both taxes and shipping
+    function getTotal($userID){
+        $service = new orderDataService();
+        
+        //rates for calculations
+        $taxRate = .0625; //the average state sales tax is around 6.25%
+        $shippingRate = 5.62; //5.62 dollars per 10 Kgs
+           
+        $shipping = 0;
+        $tax = 0;
+        $total = 0;
+        $runningTotal = 0;
+        $totalWeight = 0;
+        
+        //the array is: shipping, tax, total
+        $output = array();
+        $items = $service->getOrderTotal();
+        
+        //item array order is quantity, price, weightKg
+        foreach($items as $item){
+            $runningTotal += $item[0] * $item[1];
+            $totalWeight += $item[0] * $item[2];
+        }
+        
+        $tax = $taxRate * $runningTotal;
+        $shipping = $totalWeight * ($shippingRate/10);
+        //echo "Tax: \$$tax , shipping: \$$shipping";
+        $total = $runningTotal + $tax + $shipping;
+        
+        //pushing values to the output array
+        array_push($output,round($shipping, 2));
+        array_push($output,round($tax , 2));
+        array_push($output,round($total , 2));
+        
+        return $output;
+    }
 }
 ?>

@@ -388,5 +388,38 @@ class orderDataService{
             return null;
         }
     }
+    
+    //This gets the order info for calculating the total price with tax and shipping
+    function getOrderTotal(){
+        $db = new Database();
+        $connection = $db->getConnected();
+        $index = 0;
+        $order_id = $this->getOrderID(1);
+        
+        //echo $orderID;
+        
+        $sql = "SELECT order_info.quantity, products.price , products.weightKg FROM order_info INNER JOIN products ON order_info.product_ID=products.product_ID WHERE order_info.order_ID = $order_id";
+        if ($result = $connection->query($sql)) {
+            $nbrRows = $result->num_rows;
+            $index = 0;
+            
+            //echo "<p style=\"color: #green;\"><h3>Users</h3></p>";
+            if($result->num_rows === 0)
+                return null;
+            else{
+                //echo "<p>" . $result->num_rows . " users are registered.</p>";
+                while($row = $result->fetch_assoc()){
+                    $orderItems[$index] = array($row ['quantity'] , $row['price'], $row['weightKg']);
+                    ++$index;
+                }
+                return $orderItems;
+            }
+            
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+            return null;
+        }
+    }
+    
 }
 ?>

@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once("../Classes/OrderBusinessService.php");
+require_once("../Classes/UserBusinessService.php");
 function displayOrder($orders)
 {
 ?>
@@ -43,10 +44,23 @@ function displayOrder($orders)
           </tr>
       <?php
         }
+          //Aiden's checkout info shipping, tax, total;
+          $checkoutInfo = $service->getTotal(1);
+          $userService = new userBusinessService();
+          $isPrime = $userService->getPrime(1);
+          if($isPrime){
+            $checkoutInfo[2] -= $checkoutInfo[0];
+            $checkoutInfo[0] = 0;
+          }
+          $total = $checkoutInfo[2];
+          
+  
         if (isset($_GET['disc']))
         {
           $dCode = $_GET['disc'];
           $discount = $service->getDiscount($dCode);
+          
+
           if ($total > $discount)
           {
             $total -= $discount;
@@ -61,7 +75,12 @@ function displayOrder($orders)
             <th></th>
             <td></td>
             <td></td>
-            <td><?php echo "$$total";?></td>
+            <td><?php 
+                  if($isPrime)
+                    echo "Prime ";
+                  echo "Shipping: \$$checkoutInfo[0] <br/>Tax: $$checkoutInfo[1] <br/>Total: $$checkoutInfo[2]";
+              
+              ?></td>
             </tr>
   </tbody>
 </table>

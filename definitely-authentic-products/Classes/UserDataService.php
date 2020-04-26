@@ -44,5 +44,19 @@ class userDataService{
             echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
         }
     }
+    
+    //queries for whether the user has prime or not
+    function getPrime($id){
+        $database = new Database();
+        $connection = $database->getConnected();
+        $users = [];
+        $sql = "SELECT users.prime FROM users WHERE user_ID = $id";
+        if ($result = $connection->query($sql)) {
+            $result = $result->fetch_assoc();
+            return $result['prime'];
+        } else {
+            echo "<p style=\"color:red;\">ERROR: " . $DBConnect->error . "</p>";
+        }
+    }
 }
 ?>

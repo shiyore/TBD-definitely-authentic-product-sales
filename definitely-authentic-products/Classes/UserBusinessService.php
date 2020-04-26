@@ -18,5 +18,11 @@ class userBusinessService{
         $service = new UserDataService();
         return $service->removeUser($id);
     }
+    
+    //this is for telling if the user has prime
+    function getPrime($id){
+        $service = new UserDataService();
+        return $service->getPrime($id);
+    }
 }
 ?>
