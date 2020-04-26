@@ -15,7 +15,7 @@
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
   //start sessions
-  include("fragments/header.php");
+  //include("fragments/header.php");
   //including our navbar
   include("fragments/adminNavbar.php"); 
   //adding our search methods, in the future we hope to add these to a new class instead of the utility file

@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -42,6 +43,19 @@ function displayOrder($orders)
           </tr>
       <?php
         }
+        if (isset($_GET['disc']))
+        {
+          $dCode = $_GET['disc'];
+          $discount = $service->getDiscount($dCode);
+          if ($total > $discount)
+          {
+            $total -= $discount;
+          }
+          else
+          {
+            $total = 0;
+          }
+        }
       ?>
             <tr>
             <th></th>
@@ -52,5 +66,6 @@ function displayOrder($orders)
   </tbody>
 </table>
 <?php
+$_SESSION["total"] = $total;
 }
 ?>

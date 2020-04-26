@@ -8,5 +8,13 @@ $service = new OrderBusinessService();
 $code = $_POST['dCode'];
 $discount = $service->getDiscount($code);
 echo $discount;
-header("Location: /definitely-authentic-products/Pages/checkoutPage.php?add_ID=$_GET['add_ID']&disc=$discount");
+$add = $_GET['add_ID'];
+if ($discount > 0)
+{
+    header("Location: /definitely-authentic-products/Pages/checkoutPage.php?add_ID=$add&disc=$code");
+}
+else
+{
+    header("Location: /definitely-authentic-products/Pages/checkoutPage.php?add_ID=$add&disc=0");
+}
 ?>
