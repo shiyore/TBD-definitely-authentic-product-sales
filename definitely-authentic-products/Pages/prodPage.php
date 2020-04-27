@@ -48,7 +48,7 @@
                 <form method="POST" action="Handlers/addToCartHandler.php?product_ID=<?php echo $_GET['product_ID']?>">
                     <input type="hidden" name="quantity" id="quantity">
                     <br/>
-                    <input class="btn btn-primary" type="submit" value="+ Cart">
+                    <input class="btn btn-primary" type="submit" value="+ Kart">
                 </form>
                 
                 <Script>

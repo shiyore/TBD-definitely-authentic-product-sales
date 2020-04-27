@@ -42,7 +42,7 @@
 
 	<div class="container">
 		<div class="row">
-			<form action="Handlers/registerhandler.php" method="POST">
+			<form action="Handlers/newRegisterHandler.php" method="POST">
 				<div class="col-sm-8">
 					<div class="form-group">
 					<!--if the user got to this form with an email/password already set, put it in the field since the only way that happens is through clicking edit in the user page-->

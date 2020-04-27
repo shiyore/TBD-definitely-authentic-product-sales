@@ -8,6 +8,21 @@ class userBusinessService{
     function __construct(){
         //echo "new business service<br>";
     }
+    function addUser($e, $p, $r)
+    {
+        $service = new UserDataService();
+        $service->addUser($e, $p, $r);
+    }
+    function updateUser($e, $p, $r)
+    {
+        $service = new UserDataService();
+        $service->updateUser($e, $p, $r);
+    }
+    function checkForUser($e)
+    {
+        $service = new UserDataService();
+        return $service->checkForUser($e);
+    }
     function fetchUsers(){
         //echo "searchByFirstName<br>";
 

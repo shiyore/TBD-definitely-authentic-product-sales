@@ -7,23 +7,14 @@
      The code takes that data and sends it to the correct database and table (milestone1 , users)
      I wanted to make the framework for creating a functional account in the near future.
 -->
-
-
-<html>
-<head>
-    <title>Register Handler</title>
-    <link rel="stylesheet" href="homepage.css">
-</head>
-<body>
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //requires and includes
-require_once('../Scripts/myFuncs.php');
-
+require_once("../../Classes/OrderBusinessService.php");
 #global login variables for mysql
 define('EMPTY_STRING' , "");
-$DBName = "NotAScam";
-$tableName = "users";
-
 //traps if there is no data
 #failure no data
 if(!isset($_POST["submitButton"])){
@@ -37,10 +28,16 @@ else{
     $password = $_POST['password'];
 }
 #stores the resource 
-$DBConnect = connect($DBName);
+echo $email;
+echo '<- email;';
+echo $password;
+echo '<- pass';
+$database = new Database();
+$DBConnect = $database->getConnected();  
+$tableName = 'users'; 
 if($DBConnect){
     #Testing for valid data
-    include('../Scripts/utility.php');
+    //include('../Scripts/utility.php');
 
     $emails = "SELECT email FROM $tableName WHERE email='$email'";
     $emailCheck = $DBConnect->query($emails);
@@ -105,18 +102,12 @@ if($DBConnect){
                 echo "<h2>Thank you for registering!</h2>";
         
                 $sql = "INSERT INTO $tableName (email, password, roles) VALUES ('$email' , '$password', '$roles')";
-                $DBConnect->query($sql);  
-        
+                $DBConnect->query($sql);
             }
     }
         
     echo "<h2><p>Database Closing</p></h2>";
     $DBConnect->close();
+    header("Location: ../../index.php");
 }
 ?>
-        <ul>
-            <li><a href=index.html>Main Menu</a></li>
-        </ul>
-<hr>
-</body>
-</html>

@@ -6,6 +6,46 @@ class userDataService{
     function __construct(){
         //echo "new user DataService object<br>";
     }
+    function addUser($e, $p, $r)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        $sql = "INSERT INTO users(email, password, roles) VALUES ('$e', '$p', $r)";
+        $connection->query($sql);
+    }
+    function checkForUser($e)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        $sql = "SELECT * FROM users WHERE email = '$e'";
+        $result = $connection->query($sql);
+        $nbrRows = $result->num_rows;
+        if ($nbrRows > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    function updateUser($e, $p, $r)
+    {
+        $database = new Database();
+        $connection = $database->getConnected();
+        $sql = "SELECT * FROM users WHERE email = '$e'";
+        $result = $connection->query($sql);
+        $nbrRows = $result->num_rows;
+        if ($nbrRows > 0)
+        {
+            $sql = "UPDATE users SET email = '$e', password = '$p', roles = $r WHERE email = '$e'";
+            $connection->query($sql);
+        }
+        else
+        {
+            die("No existing user");
+        }
+    }
     function findAllUsers(){
         $database = new Database();
         $connection = $database->getConnected();
