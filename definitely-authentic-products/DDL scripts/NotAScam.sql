@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 26, 2020 at 10:13 PM
+-- Generation Time: Apr 27, 2020 at 05:10 AM
 -- Server version: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -172,7 +172,8 @@ INSERT INTO `order_info` (`order_ID`, `product_ID`, `quantity`) VALUES
 (8, 5, 38),
 (11, 7, 20),
 (12, 1, 12),
-(13, 19, 16);
+(13, 15, 2),
+(13, 3, 12);
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`product_ID`, `name`, `price`, `short_desc`, `image`, `category_ID`, `description`, `desc_image`, `weightKg`) VALUES
 (1, 'Finger Mouse', 174.99, 'A new intimate kind of mouse for when you feeling lonely!', '../images/fingermouse.jpg', 1, 'Have you ever wanted to feel your lost loved one\'s hand in yours again? Now you can, with the fingermouse! Feel the soft skin as you browse through old images of better times.', '../images/fingermouse.jpg', 1),
 (2, 'Desktop', 299.99, 'A working desktop computer PC windows!', '../images/desktop.jpg', 1, 'A desktop perfect for word processing, coding, and consuming media.', '../images/desktop.jpg', 10),
-(3, 'Plastic Dogs', 4.20, 'Dogs as toys!', '../images/dogs.jpg', 3, 'Does your annoying kid keep whining about having a dog? Well, now you can get him two for the low price of $4.20 and not have to worry about taking care of them!', '../images/dogs.jpg', 1),
+(3, 'Plastic Dogs', 4.20, 'Dogs as toys!', '../images/dogs.jpg', 3, 'Does your annoying kid keep whining about having a dog? Well, now you can get him two for the low price of $4.20 and not have to worry about taking care of them!', '../images/dogs.jpg', 47),
 (4, 'Dr.Boy', 46.92, 'Play popular games on the innovative Dr.Boy mobile game console!', '../images/DrBoy.jpg', 1, 'A innovative electronic device that allows you to play the most modern games anywhere. The Dr. Boy saves you from boredom from your own room, all the way to the board meeting you dread.', '../images/DrBoy.jpg', 2),
 (5, 'Fony DualShock Controller', 27.99, 'A good quality controller for your game console needs!', '../images/FonyController.jpg', 1, 'An authentic controller used for a video game console. Similar products have terrible price. We have good low price.', '../images/FonyController.jpg', 1),
 (6, 'Frans Tromers: Dark of the Moon', 8.99, 'Fight the encroching danger of the Deceptionions!', '../images/franstromers.png', 3, 'Join Hoptimus Crime in saving Bribertron and defeating the Deceptioncons. This toy will bring joy to your alive son.', '../images/franstromers.png', 20),
@@ -239,7 +240,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_ID`, `email`, `username`, `password`, `roles`, `prime`) VALUES
-(1, 'email@email.com', 'username', 'password', 3, 0);
+(1, 'email@email.com', 'username', 'password', 3, 0),
+(2, 'test@email.com', 'Dunkey', '123', 1, 0),
+(3, 'test1@email.com', 'lordyloo', '123', 1, 0),
+(5, 'test2@gmail.com', 'notbeingscammed', '1234', 1, 0),
+(7, 'bill@hughes.com', NULL, '1234', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -333,7 +338,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
